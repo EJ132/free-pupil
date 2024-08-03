@@ -16,7 +16,10 @@ export const GiveLivelyWidget = () => {
   }, []);
 
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section
+      id="give-lively-widget-section"
+      className="px-[5%] py-16 md:py-24 lg:py-28"
+    >
       <div className="container">
         <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-black">
           Donate to our cause

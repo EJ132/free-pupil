@@ -66,7 +66,9 @@ export const HomePageLayout242 = () => {
                   size={section.button.size}
                   iconRight={section.button.iconRight}
                   iconLeft={section.button.iconLeft}
-                  onClick={() => (window.location.href = "#give-lively-widget")}
+                  onClick={() =>
+                    (window.location.href = "#give-lively-widget-section")
+                  }
                 >
                   {section.button.title}
                 </Button>

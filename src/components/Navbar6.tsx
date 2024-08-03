@@ -102,7 +102,9 @@ export const Navbar6 = () => {
                   button.variant !== "secondary-alt" &&
                     "bg-green-700 border-green-700 text-white"
                 )}
-                onClick={() => (window.location.href = "#give-lively-widget")}
+                onClick={() =>
+                  (window.location.href = "#give-lively-widget-section")
+                }
               >
                 {button.title}
               </Button>

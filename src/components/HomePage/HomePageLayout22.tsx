@@ -53,7 +53,9 @@ export const HomePageLayout22 = () => {
                 <Button
                   key={index}
                   {...button}
-                  onClick={() => (window.location.href = "#give-lively-widget")}
+                  onClick={() =>
+                    (window.location.href = "#give-lively-widget-section")
+                  }
                 >
                   {button.title}
                 </Button>
