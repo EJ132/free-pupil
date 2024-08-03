@@ -18,3 +18,5 @@ We would like to thank the following organizations for their support and resourc
 
 - The [Relume](https://relume.io/) team for their [relume-ui](https://github.com/relume-io/relume-ui) and [relume-tailwind](https://github.com/relume-io/relume-tailwind) packages.
 - The [Tailwind CSS](https://tailwindcss.com/) team for their [tailwindcss-animate](https://github.com/tailwindlabs/tailwindcss-animate) package.
+
+## Lets make a difference
