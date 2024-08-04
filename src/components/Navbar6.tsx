@@ -6,6 +6,9 @@ import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxChevronDown, RxChevronRight } from "react-icons/rx";
 import { AnimatePresence, motion } from "framer-motion";
 import { cx } from "class-variance-authority";
+import Image from "next/image";
+
+import FreePupilLogo from "../../public/svgs/FreePupilLogo.svg";
 
 type ImageProps = {
   url?: string;
@@ -62,14 +65,22 @@ export const Navbar6 = () => {
   return (
     <nav className="relative z-[999] flex min-h-16 w-full items-center border-b border-border-primary bg-background-primary px-[5%] md:min-h-18">
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
-        {/* <a href={logo.url}> */}
-        <h1
-          className="text-3xl font-bold text-black hover:cursor-pointer"
-          onClick={() => (window.location.href = "/")}
-        >
-          Free Pupil
-        </h1>
-        {/* </a> */}
+        <div className="flex items-center">
+          <Image
+            src={FreePupilLogo.src}
+            alt={FreePupilLogo.alt || ""}
+            className="inline-block"
+            width={80}
+            height={80}
+          />
+          <h1
+            className="text-3xl font-bold text-black hover:cursor-pointer -mt-1"
+            onClick={() => (window.location.href = "/")}
+          >
+            Free Pupil
+          </h1>
+        </div>
+
         <div className="absolute hidden h-screen overflow-auto border-b border-border-primary bg-background-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
           <div className="flex flex-col items-center lg:flex-row">
             {/* {navLinks.map((navLink, index) => (
