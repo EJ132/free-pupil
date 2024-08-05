@@ -69,12 +69,12 @@ export const Navbar6 = () => {
           <Image
             src={FreePupilLogo.src}
             alt={FreePupilLogo.alt || ""}
-            className="inline-block"
+            className="inline-block -ml-6 md:-ml-4"
             width={80}
             height={80}
           />
           <h1
-            className="text-3xl font-bold text-black hover:cursor-pointer -mt-1"
+            className="text-3xl font-bold text-black hover:cursor-pointer -mt-1 -ml-1"
             onClick={() => (window.location.href = "/")}
           >
             Free Pupil
