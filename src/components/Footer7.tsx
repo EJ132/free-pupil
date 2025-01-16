@@ -37,35 +37,25 @@ export const Footer7 = () => {
     ...Footer7Defaults,
   } as Props;
   return (
-    <footer className="px-[5%] py-12 md:py-18 lg:py-20">
+    <footer className="px-[5%] py-12 md:py-18 lg:py-20 bg-black">
       <div className="container">
         <div className="flex flex-col items-center">
           <a href={logo.url} className="mb-8">
             <Image
               src={logo.src}
               alt={logo.alt || ""}
-              className="inline-block"
+              className="inline-block invert"
               width={500}
               height={500}
             />
           </a>
         </div>
-        <div className="h-px w-full bg-black" />
+        <div className="h-px w-full bg-white/20" />
         <div className="flex flex-col-reverse items-center justify-between pb-4 pt-6 text-center text-sm md:flex-row md:pb-0 md:pt-8">
-          <p className="mt-8 md:mt-0 text-black">{footerText}</p>
+          <p className="mt-8 md:mt-0 text-white/80">{footerText}</p>
 
           <div className="flex flex-col gap-4 md:flex-row md:gap-8">
-            {/* {footerLinks.map(({ title, url }, index) => (
-              <a
-                key={index}
-                href={url}
-                className="text-black hover:text-black/80 transition-colors"
-              >
-                {title}
-              </a>
-            ))} */}
-
-            <a className="text-black hover:text-black/80 transition-colors">
+            <a className="text-white/80 hover:text-white transition-colors">
               More Coming Soon...
             </a>
           </div>

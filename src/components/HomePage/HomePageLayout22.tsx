@@ -29,25 +29,25 @@ export const HomePageLayout22 = () => {
     ...HomePageLayout22Defaults,
   } as Props;
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-black">
       <div className="container">
         <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div>
             <div className="mb-5 md:mb-6">
               <Image
                 src={icon.src}
-                className="size-20"
+                className="size-20 invert"
                 alt={icon.alt || ""}
                 width={12}
                 height={12}
               />
             </div>
-            <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-black tracking-tighter">
-              <span className="text-green-700">Empowering</span> Underprivileged
-              Youth Through <span className="text-green-700">Education</span>{" "}
-              and <span className="text-green-700">Opportunity</span>
+            <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white tracking-tighter">
+              <span className="text-green-500">Empowering</span> Underprivileged
+              Youth Through <span className="text-green-500">Education</span>{" "}
+              and <span className="text-green-500">Opportunity</span>
             </h2>
-            <p className="md:text-md text-black">{description}</p>
+            <p className="md:text-md text-white/80">{description}</p>
             <div className="mt-6 flex items-center gap-x-4 md:mt-8">
               {buttons.map((button, index) => (
                 <Button

@@ -11,7 +11,7 @@ import {
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-tertiary overflow-x-hidden">
+    <main className="flex min-h-screen flex-col bg-black overflow-x-hidden">
       <title>
         Free Pupil | A non-profit organization that helps underprivileged
         children

@@ -17,12 +17,12 @@ export const HomePageCTA25 = (props: HomePageCTA25Props) => {
     ...HomePageCTA25Defaults,
   } as Props;
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-neutral-100">
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-gray-900">
       <div className="container max-w-lg text-center">
-        <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-black tracking-tighter">
+        <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white tracking-tighter">
           {heading}
         </h2>
-        <p className="md:text-md text-black">{description}</p>
+        <p className="md:text-md text-white/80">{description}</p>
         <div className="mt-6 flex items-center justify-center gap-4 md:mt-8">
           {buttons.map((button, index) => (
             <Button
@@ -30,7 +30,7 @@ export const HomePageCTA25 = (props: HomePageCTA25Props) => {
               {...button}
               className={cx(
                 button.variant === "secondary-alt" &&
-                  "bg-transparent border-black text-black",
+                  "bg-transparent border-white text-white",
                 button.variant !== "secondary-alt" &&
                   "bg-green-700 border-green-700 text-white"
               )}

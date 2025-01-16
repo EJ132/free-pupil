@@ -32,34 +32,36 @@ export type HomePageLayout242Props = React.ComponentPropsWithoutRef<"section"> &
 export const HomePageLayout242 = () => {
   const { sections = [] } = { ...HomePageLayout242Defaults };
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-black">
       <div className="container flex flex-col items-start">
         <div className="mb-12 w-full max-w-lg md:mb-18 lg:mb-20">
-          <h3 className="text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl tracking-tighter text-black">
+          <h3 className="text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl tracking-tighter text-white">
             Providing{" "}
-            <span className="text-green-700">Educational Scholarships</span> and{" "}
-            <span className="text-green-700">Mentorship Programs</span>
+            <span className="text-green-500">Educational Scholarships</span> and{" "}
+            <span className="text-green-500">Mentorship Programs</span>
           </h3>
         </div>
         <div className="grid grid-cols-1 items-start gap-y-12 md:grid-cols-3 md:gap-x-8 md:gap-y-16 lg:gap-x-12">
           {sections.map((section, index) => (
             <div
               key={index}
-              className="border rounded-lg shadow-large shadow-gray-400 p-4 border-border-primary"
+              className="border rounded-lg shadow-large shadow-gray-800 p-4 border-gray-800 bg-gray-900"
             >
               <div className="mb-5 md:mb-6">
                 <Image
                   src={section.icon.src}
-                  className="size-12"
+                  className="size-12 invert"
                   alt={section.icon.alt || ""}
                   width={12}
                   height={12}
                 />
               </div>
-              <h3 className="mb-5 text-xl font-bold md:mb-6 md:text-2xl tracking-tighter text-green-700">
+              <h3 className="mb-5 text-xl font-bold md:mb-6 md:text-2xl tracking-tighter text-green-500">
                 {section.heading}
               </h3>
-              <p className="mb-5 md:mb-6 text-black">{section.description}</p>
+              <p className="mb-5 md:mb-6 text-white/80">
+                {section.description}
+              </p>
               <div className="mt-6 flex items-center gap-4 md:mt-8">
                 <Button
                   variant={section.button.variant}
@@ -69,6 +71,7 @@ export const HomePageLayout242 = () => {
                   onClick={() =>
                     (window.location.href = "#give-lively-widget-section")
                   }
+                  className="text-white/80 hover:text-white transition-colors"
                 >
                   {section.button.title}
                 </Button>

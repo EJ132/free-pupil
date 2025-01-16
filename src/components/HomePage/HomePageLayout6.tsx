@@ -28,24 +28,26 @@ export const HomePageLayout6 = () => {
     ...HomePageLayout6Defaults,
   } as Props;
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-black">
       <div className="container">
         <div className="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
           <div>
-            <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-black">
-              <span className="text-green-700">Supporting</span> our
+            <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white">
+              <span className="text-green-500">Supporting</span> our
               organization creates a{" "}
-              <span className="text-green-700">brighter future</span> for{" "}
-              <span className="text-green-700">underprivileged youth.</span>
+              <span className="text-green-500">brighter future</span> for{" "}
+              <span className="text-green-500">underprivileged youth.</span>
             </h2>
-            <p className="mb-6 md:mb-8 md:text-md text-black">{description}</p>
+            <p className="mb-6 md:mb-8 md:text-md text-white/80">
+              {description}
+            </p>
             <div className="grid grid-cols-1 gap-6 py-2 md:grid-cols-2">
               {subHeadings.map((subHeading, index) => (
                 <div key={index}>
-                  <h6 className="mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl text-green-700">
+                  <h6 className="mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl text-green-500">
                     {subHeading.title}
                   </h6>
-                  <p className="text-black">{subHeading.description}</p>
+                  <p className="text-white/80">{subHeading.description}</p>
                 </div>
               ))}
             </div>

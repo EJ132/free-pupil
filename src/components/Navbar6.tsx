@@ -63,25 +63,25 @@ export const Navbar6 = () => {
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
-    <nav className="relative z-[999] flex min-h-16 w-full items-center border-b border-border-primary bg-background-primary px-[5%] md:min-h-18">
+    <nav className="relative z-[999] flex min-h-16 w-full items-center border-b border-gray-800 bg-black px-[5%] md:min-h-18">
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
         <div className="flex items-center">
           <Image
             src={FreePupilLogo.src}
             alt={FreePupilLogo.alt || ""}
-            className="inline-block -ml-6 md:-ml-4"
+            className="inline-block -ml-6 md:-ml-4 invert"
             width={80}
             height={80}
           />
           <h1
-            className="text-3xl font-bold text-black hover:cursor-pointer -mt-1 -ml-1"
+            className="text-3xl font-bold text-white hover:cursor-pointer -mt-1 -ml-1"
             onClick={() => (window.location.href = "/")}
           >
             Free Pupil
           </h1>
         </div>
 
-        <div className="absolute hidden h-screen overflow-auto border-b border-border-primary bg-background-primary px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
+        <div className="absolute hidden h-screen overflow-auto border-b border-gray-800 bg-black px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
           <div className="flex flex-col items-center lg:flex-row">
             {/* {navLinks.map((navLink, index) => (
               <div key={index}>
@@ -94,7 +94,7 @@ export const Navbar6 = () => {
                 ) : (
                   <a
                     href={navLink.url}
-                    className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base"
+                    className="relative block w-auto py-3 text-md lg:inline-block lg:px-4 lg:py-6 lg:text-base text-white hover:text-white/80"
                   >
                     {navLink.title}
                   </a>
@@ -109,7 +109,7 @@ export const Navbar6 = () => {
                 {...button}
                 className={cx(
                   button.variant === "secondary-alt" &&
-                    "bg-transparent border-black text-black",
+                    "bg-transparent border-white text-white",
                   button.variant !== "secondary-alt" &&
                     "bg-green-700 border-green-700 text-white"
                 )}
@@ -127,17 +127,17 @@ export const Navbar6 = () => {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <motion.span
-            className="my-[3px] h-0.5 w-6 bg-black"
+            className="my-[3px] h-0.5 w-6 bg-white"
             animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
             variants={topLineVariants}
           />
           <motion.span
-            className="my-[3px] h-0.5 w-6 bg-black"
+            className="my-[3px] h-0.5 w-6 bg-white"
             animate={isMobileMenuOpen ? "open" : "closed"}
             variants={middleLineVariants}
           />
           <motion.span
-            className="my-[3px] h-0.5 w-6 bg-black"
+            className="my-[3px] h-0.5 w-6 bg-white"
             animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
             variants={bottomLineVariants}
           />
@@ -165,7 +165,7 @@ export const Navbar6 = () => {
               initial="close"
               exit="close"
               transition={{ duration: 0.4 }}
-              className="absolute left-0 right-0 top-0 block h-[100dvh] overflow-auto border-b border-border-primary bg-background-primary px-[5%] pb-8 pt-4"
+              className="absolute left-0 right-0 top-0 block h-[100dvh] overflow-auto border-b border-gray-800 bg-black px-[5%] pb-8 pt-4"
             >
               <div className="flex flex-col">
                 {/* {navLinks.map((navLink, index) => (
@@ -177,7 +177,7 @@ export const Navbar6 = () => {
                         isMobile={isMobile}
                       />
                     ) : (
-                      <a href={navLink.url} className="block py-3 text-md">
+                      <a href={navLink.url} className="block py-3 text-md text-white hover:text-white/80">
                         {navLink.title}
                       </a>
                     )}
@@ -190,7 +190,7 @@ export const Navbar6 = () => {
                       {...button}
                       className={cx(
                         button.variant === "secondary-alt" &&
-                          "bg-transparent border-black text-black",
+                          "bg-transparent border-white text-white",
                         button.variant !== "secondary-alt" &&
                           "bg-green-700 border-green-700 text-white"
                       )}

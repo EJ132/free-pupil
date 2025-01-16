@@ -18,13 +18,13 @@ export const GiveLivelyWidget = () => {
   return (
     <section
       id="give-lively-widget-section"
-      className="px-[5%] py-16 md:py-24 lg:py-28"
+      className="px-[5%] py-16 md:py-24 lg:py-28 bg-black"
     >
       <div className="container">
-        <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-black">
+        <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white">
           Donate to our cause
         </h2>
-        <p className="mb-6 md:mb-8 md:text-md text-black">
+        <p className="mb-6 md:mb-8 md:text-md text-white/80">
           Your donation will help us provide education, mentorship, and
           opportunities for a better future.
         </p>
