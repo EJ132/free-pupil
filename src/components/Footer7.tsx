@@ -52,7 +52,12 @@ export const Footer7 = () => {
         </div>
         <div className="h-px w-full bg-white/20" />
         <div className="flex flex-col-reverse items-center justify-between pb-4 pt-6 text-center text-sm md:flex-row md:pb-0 md:pt-8">
-          <p className="mt-8 md:mt-0 text-white/80">{footerText}</p>
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <p className="mt-8 md:mt-0 text-white/80">{footerText}</p>
+            <p className="text-white/60">
+              An IRS recognized 501(c)3 charitable organization
+            </p>
+          </div>
 
           <div className="flex flex-col gap-4 md:flex-row md:gap-8">
             <a className="text-white/80 hover:text-white transition-colors">
