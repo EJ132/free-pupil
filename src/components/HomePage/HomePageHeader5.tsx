@@ -2,8 +2,9 @@
 
 import { Button } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
+import { motion } from "framer-motion";
 
-import HomePageHeader5Image from "../../../public/images/home/HomePageHeader5.jpg";
+import HomeImage1 from "../../../public/images/home/HomeImage1.png";
 import Image from "next/image";
 import { cx } from "class-variance-authority";
 
@@ -30,12 +31,34 @@ export const HomePageHeader5 = () => {
     <header className="relative px-[5%]">
       <div className="container relative z-10">
         <div className="flex max-h-[60rem] min-h-svh items-center py-16 md:py-24 lg:py-28">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-6xl font-bold text-white md:mb-6 md:text-9xl lg:text-10xl tracking-tighter">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-md bg-black/50 backdrop-blur-sm rounded-2xl p-8 shadow-xl"
+          >
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mb-5 text-6xl font-bold text-white md:mb-6 md:text-9xl lg:text-10xl tracking-tighter"
+            >
               {heading}
-            </h1>
-            <p className="text-base text-white/80 md:text-md">{description}</p>
-            <div className="mt-6 flex gap-x-4 md:mt-8">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-base text-white/80 md:text-md"
+            >
+              {description}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="mt-6 flex gap-x-4 md:mt-8"
+            >
               {buttons.map((button, index) => (
                 <Button
                   key={index}
@@ -53,8 +76,8 @@ export const HomePageHeader5 = () => {
                   {button.title}
                 </Button>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
       <div className="absolute inset-0 w-full h-full">
@@ -81,7 +104,7 @@ export const HomePageHeader5Defaults: HomePageHeader5Props = {
     { title: "Get Involved", variant: "secondary-alt" },
   ],
   image: {
-    src: HomePageHeader5Image.src,
+    src: HomeImage1.src,
     alt: "Underprivileged children receiving free education",
   },
 };
