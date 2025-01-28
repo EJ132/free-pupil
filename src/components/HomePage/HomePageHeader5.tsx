@@ -2,7 +2,8 @@
 
 import { Button } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 import HomeImage1 from "../../../public/images/home/HomeImage1.png";
 import Image from "next/image";
@@ -27,19 +28,23 @@ export const HomePageHeader5 = () => {
   const { heading, description, buttons, image } = {
     ...HomePageHeader5Defaults,
   } as Props;
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
   return (
-    <header className="relative px-[5%]">
+    <header ref={ref} className="relative px-[5%]">
       <div className="container relative z-10">
         <div className="flex max-h-[60rem] min-h-svh items-center py-16 md:py-24 lg:py-28">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-md bg-black/50 backdrop-blur-sm rounded-2xl p-8 shadow-xl"
           >
             <motion.h1
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="mb-5 text-6xl font-bold text-white md:mb-6 md:text-9xl lg:text-10xl tracking-tighter"
             >
@@ -47,7 +52,7 @@ export const HomePageHeader5 = () => {
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
               className="text-base text-white/80 md:text-md"
             >
@@ -55,7 +60,7 @@ export const HomePageHeader5 = () => {
             </motion.p>
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
               className="mt-6 flex gap-x-4 md:mt-8"
             >
