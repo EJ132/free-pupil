@@ -83,7 +83,7 @@ export const HomePageHeader5 = () => {
       <div className="absolute inset-0 w-full h-full">
         <Image
           src={image.src}
-          className="object-cover size-full rounded-xl shadow-xxlarge shadow-gray-300"
+          className="object-cover size-full rounded-xl shadow-[0_0_20px_0px_rgba(0,0,0,1)] shadow-gray-300"
           alt={image.alt || ""}
           width={1920}
           height={1080}

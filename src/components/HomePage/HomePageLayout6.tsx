@@ -1,6 +1,8 @@
-import Image from "next/image";
+"use client";
 
-import HomePageLayout6Image from "../../../public/images/home/HomePageLayout6.png";
+import { motion, LazyMotion, domAnimation, m } from "framer-motion";
+
+import HomePageLayout6Image from "../../../public/images/home/HomePageLayout6Image2.png";
 
 type ImageProps = {
   src: string;
@@ -27,43 +29,73 @@ export const HomePageLayout6 = () => {
   const { description, image, subHeadings } = {
     ...HomePageLayout6Defaults,
   } as Props;
+
   return (
-    <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-black">
-      <div className="container">
-        <div className="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
-          <div>
-            <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white">
-              <span className="text-green-500">Supporting</span> our
-              organization creates a{" "}
-              <span className="text-green-500">brighter future</span> for{" "}
-              <span className="text-green-500">underprivileged youth.</span>
-            </h2>
-            <p className="mb-6 md:mb-8 md:text-md text-white/80">
-              {description}
-            </p>
-            <div className="grid grid-cols-1 gap-6 py-2 md:grid-cols-2">
-              {subHeadings.map((subHeading, index) => (
-                <div key={index}>
-                  <h6 className="mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl text-green-500">
-                    {subHeading.title}
-                  </h6>
-                  <p className="text-white/80">{subHeading.description}</p>
-                </div>
-              ))}
+    <LazyMotion features={domAnimation}>
+      <section className="px-[5%] py-16 md:py-24 lg:py-28 bg-gradient-to-br from-gray-950 via-black to-gray-900">
+        <div className="container">
+          <div className="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
+            <div>
+              <m.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white"
+              >
+                <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  Supporting
+                </span>{" "}
+                our organization creates a{" "}
+                <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                  brighter future
+                </span>{" "}
+                for{" "}
+                <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  underprivileged youth.
+                </span>
+              </m.h2>
+              <m.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="mb-6 md:mb-8 md:text-md text-white/80"
+              >
+                {description}
+              </m.p>
+              <div className="grid grid-cols-1 gap-6 py-2 md:grid-cols-2">
+                {subHeadings.map((subHeading, index) => (
+                  <m.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 + index * 0.2 }}
+                    className="p-6 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors duration-300"
+                  >
+                    <h6 className="mb-3 text-md font-bold leading-[1.4] md:mb-4 md:text-xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                      {subHeading.title}
+                    </h6>
+                    <p className="text-white/80">{subHeading.description}</p>
+                  </m.div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div>
-            <Image
-              src={image.src}
-              className="w-full object-cover shadow-xlarge shadow-green-500 rounded-xl"
-              alt={image.alt || ""}
-              width={2000}
-              height={2000}
-            />
+            <m.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            >
+              <img
+                src={image.src}
+                className="w-full object-cover shadow-[0_0_30px_0px_rgba(59,130,246,0.2)] rounded-xl"
+                alt={image.alt || ""}
+                width={2000}
+                height={2000}
+              />
+            </m.div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </LazyMotion>
   );
 };
 
