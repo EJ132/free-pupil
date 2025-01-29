@@ -19,7 +19,7 @@ export const HomePageCTA25 = (props: HomePageCTA25Props) => {
     ...HomePageCTA25Defaults,
   } as Props;
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
     <LazyMotion features={domAnimation}>

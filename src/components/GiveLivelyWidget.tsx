@@ -6,7 +6,7 @@ import { useRef } from "react";
 
 export const GiveLivelyWidget = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -44,8 +44,8 @@ export const GiveLivelyWidget = () => {
             </h2>
             <p className="mb-8 md:mb-10 md:text-lg text-white/80 max-w-2xl">
               Your donation will help us provide education, mentorship, and
-              opportunities for a better future. Every contribution makes a difference
-              in empowering underprivileged youth.
+              opportunities for a better future. Every contribution makes a
+              difference in empowering underprivileged youth.
             </p>
 
             <div

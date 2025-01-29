@@ -32,10 +32,9 @@ export const HomePageLayout6 = () => {
   } as Props;
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { 
-    once: true, 
-    amount: 0.5,
-    margin: "-100px"
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.4,
   });
 
   return (

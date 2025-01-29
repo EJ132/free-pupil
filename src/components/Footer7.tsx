@@ -44,8 +44,7 @@ export const Footer7 = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
-    amount: 0.5,
-    margin: "-100px",
+    amount: 0.4,
   });
 
   return (

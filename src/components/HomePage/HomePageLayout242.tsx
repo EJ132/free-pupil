@@ -34,7 +34,7 @@ export type HomePageLayout242Props = React.ComponentPropsWithoutRef<"section"> &
 export const HomePageLayout242 = () => {
   const { sections = [] } = { ...HomePageLayout242Defaults };
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
     <LazyMotion features={domAnimation}>

@@ -48,7 +48,14 @@ export const HomePageHeader5 = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="mb-5 text-6xl font-bold text-white md:mb-6 md:text-9xl lg:text-10xl tracking-tighter"
             >
-              {heading}
+              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                Supporting
+              </span>{" "}
+              <span className="text-white">our organization creates a</span>{" "}
+              <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                brighter future
+              </span>{" "}
+              <span className="text-white">for underprivileged youth.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -70,9 +77,9 @@ export const HomePageHeader5 = () => {
                   {...button}
                   className={cx(
                     button.variant === "secondary-alt" &&
-                      "bg-transparent border-white text-white",
+                      "text-white hover:text-blue-400 border-blue-400 transition-colors group",
                     button.variant !== "secondary-alt" &&
-                      "bg-green-700 border-green-700 text-white"
+                      "bg-blue-500 hover:bg-blue-600 text-white border-0 transition-colors"
                   )}
                   onClick={() =>
                     (window.location.href = "#give-lively-widget-section")
