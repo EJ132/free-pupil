@@ -76,10 +76,10 @@ export const HomePageHeader5 = () => {
                   key={index}
                   {...button}
                   className={cx(
-                    button.variant === "secondary-alt" &&
-                      "text-white hover:text-blue-400 border-blue-400 transition-colors group",
-                    button.variant !== "secondary-alt" &&
-                      "bg-blue-500 hover:bg-blue-600 text-white border-0 transition-colors"
+                    "transition-all duration-300",
+                    button.variant === "secondary-alt"
+                      ? "text-white hover:text-blue-400 border-blue-400 transition-colors group"
+                      : "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-lg shadow-blue-500/20"
                   )}
                   onClick={() =>
                     (window.location.href = "#give-lively-widget-section")
