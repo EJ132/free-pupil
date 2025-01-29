@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { LazyMotion, domAnimation, m, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export const GiveLivelyWidget = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5, margin: "-100px" });
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -16,24 +21,40 @@ export const GiveLivelyWidget = () => {
   }, []);
 
   return (
-    <section
-      id="give-lively-widget-section"
-      className="px-[5%] py-16 md:py-24 lg:py-28 bg-black"
-    >
-      <div className="container">
-        <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white">
-          Donate to our cause
-        </h2>
-        <p className="mb-6 md:mb-8 md:text-md text-white/80">
-          Your donation will help us provide education, mentorship, and
-          opportunities for a better future.
-        </p>
+    <LazyMotion features={domAnimation}>
+      <section
+        ref={ref}
+        id="give-lively-widget-section"
+        className="px-[5%] py-16 md:py-24 lg:py-28 bg-gradient-to-br from-gray-950 via-black to-gray-900"
+      >
+        <div className="container max-w-4xl mx-auto">
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <h2 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl tracking-tighter">
+              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                Support
+              </span>{" "}
+              <span className="text-white">Our Mission to</span>{" "}
+              <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                Transform Lives
+              </span>
+            </h2>
+            <p className="mb-8 md:mb-10 md:text-lg text-white/80 max-w-2xl">
+              Your donation will help us provide education, mentorship, and
+              opportunities for a better future. Every contribution makes a difference
+              in empowering underprivileged youth.
+            </p>
 
-        <div
-          id="give-lively-widget"
-          className="gl-simple-donation-widget"
-        ></div>
-      </div>
-    </section>
+            <div
+              id="give-lively-widget"
+              className="gl-simple-donation-widget bg-white/5 backdrop-blur-sm rounded-xl p-6 shadow-[0_0_30px_0px_rgba(59,130,246,0.1)]"
+            ></div>
+          </m.div>
+        </div>
+      </section>
+    </LazyMotion>
   );
 };

@@ -32,17 +32,26 @@ export const HomePageLayout6 = () => {
   } as Props;
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { 
+    once: true, 
+    amount: 0.5,
+    margin: "-100px"
+  });
 
   return (
     <LazyMotion features={domAnimation}>
-      <section ref={ref} className="px-[5%] py-16 md:py-24 lg:py-28 bg-gradient-to-br from-gray-950 via-black to-gray-900">
+      <section
+        ref={ref}
+        className="px-[5%] py-16 md:py-24 lg:py-28 bg-gradient-to-br from-gray-950 via-black to-gray-900"
+      >
         <div className="container">
           <div className="grid grid-cols-1 gap-y-12 md:grid-flow-row md:grid-cols-2 md:items-center md:gap-x-12 lg:gap-x-20">
             <div>
               <m.h2
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl text-white"
               >
@@ -71,7 +80,9 @@ export const HomePageLayout6 = () => {
                   <m.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    animate={
+                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                    }
                     transition={{ duration: 0.8, delay: 0.5 + index * 0.2 }}
                     className="p-6 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors duration-300"
                   >
@@ -85,7 +96,11 @@ export const HomePageLayout6 = () => {
             </div>
             <m.div
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+              animate={
+                isInView
+                  ? { opacity: 1, scale: 1 }
+                  : { opacity: 0, scale: 0.95 }
+              }
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             >
               <img
