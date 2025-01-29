@@ -108,10 +108,10 @@ export const Navbar6 = () => {
                 key={index}
                 {...button}
                 className={cx(
-                  button.variant === "secondary-alt" &&
-                    "bg-transparent border-white text-white",
-                  button.variant !== "secondary-alt" &&
-                    "bg-green-700 border-green-700 text-white"
+                  "transition-all duration-300",
+                  button.variant === "secondary-alt"
+                    ? "text-white hover:text-blue-400 border-blue-400 transition-colors group"
+                    : "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-lg shadow-blue-500/20"
                 )}
                 onClick={() =>
                   (window.location.href = "#give-lively-widget-section")
@@ -189,10 +189,10 @@ export const Navbar6 = () => {
                       key={index}
                       {...button}
                       className={cx(
-                        button.variant === "secondary-alt" &&
-                          "bg-transparent border-white text-white",
-                        button.variant !== "secondary-alt" &&
-                          "bg-green-700 border-green-700 text-white"
+                        "transition-all duration-300",
+                        button.variant === "secondary-alt"
+                          ? "text-white hover:text-blue-400 border-blue-400 transition-colors group"
+                          : "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-lg shadow-blue-500/20"
                       )}
                     >
                       {button.title}
