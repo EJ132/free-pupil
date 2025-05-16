@@ -166,7 +166,7 @@ export const FinalCTA = () => {
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
-                  size="lg"
+                  size="sm"
                   className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 group rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base"
                   onClick={() => window.location.href = "#give-lively-widget-section"}
                 >
@@ -178,7 +178,7 @@ export const FinalCTA = () => {
 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
-                  size="lg"
+                  size="sm"
                   variant="secondary-alt"
                   className="text-white border-2 border-white/20 hover:border-white/40 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base"
                   onClick={() => window.location.href = "#give-lively-widget-section"}
@@ -198,7 +198,7 @@ export const FinalCTA = () => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <p className="text-base sm:text-lg text-white/90 italic mb-3 sm:mb-4">
-              "Every dollar donated to Free Pupil goes directly toward changing a child's life. We maintain a 95% program expense ratio, ensuring your generosity creates maximum impact."
+              &ldquo;Every dollar donated to Free Pupil goes directly toward changing a child&apos;s life. We maintain a 95% program expense ratio, ensuring your generosity creates maximum impact.&rdquo;
             </p>
             <p className="text-white/70">- Gabriel Gonzalez, Founder</p>
           </motion.div>

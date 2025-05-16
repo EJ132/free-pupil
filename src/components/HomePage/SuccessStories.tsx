@@ -148,7 +148,7 @@ export const SuccessStories = () => {
                       <Quote className="w-12 h-12 text-blue-500 mb-6" />
                       
                       <p className="text-xl text-white/90 italic mb-6 leading-relaxed">
-                        "{stories[currentIndex].quote}"
+                        &ldquo;{stories[currentIndex].quote}&rdquo;
                       </p>
 
                       <div className="mb-6">

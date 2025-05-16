@@ -149,7 +149,7 @@ export const NewHeroHeader = () => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <Button
-              size="lg"
+              size="sm"
               className="bg-white text-black hover:bg-white/90 border-0 transform hover:scale-105 transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base"
               onClick={() => window.location.href = "#give-lively-widget-section"}
             >
@@ -157,7 +157,7 @@ export const NewHeroHeader = () => {
               Donate Now
             </Button>
             <Button
-              size="lg"
+              size="sm"
               variant="secondary-alt"
               className="text-white border-2 border-white/30 hover:border-white/60 hover:bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-300 group rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base"
               onClick={() => window.location.href = "#about"}

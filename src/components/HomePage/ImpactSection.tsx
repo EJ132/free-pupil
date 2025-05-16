@@ -206,7 +206,7 @@ export const ImpactSection = () => {
           transition={{ duration: 0.8 }}
         >
           <Button
-            size="lg"
+            size="sm"
             className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:scale-105 transition-all duration-300 rounded-full px-8 py-4"
             onClick={() => window.location.href = "#give-lively-widget-section"}
           >
