@@ -13,7 +13,12 @@ export const NewHeroHeader = memo(() => {
   const ref = useRef(null);
   const { scrollY } = useScroll();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   // Parallax effects - disable on mobile for performance
   const y = useTransform(scrollY, [0, 1000], isMobile ? [0, 0] : [0, 200]);
@@ -50,6 +55,9 @@ export const NewHeroHeader = memo(() => {
           fill
           className="object-cover"
           priority
+          loading="eager"
+          quality={isMobile ? 75 : 90}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/70" />
       </motion.div>
@@ -109,8 +117,8 @@ export const NewHeroHeader = memo(() => {
             isMobile ? "bg-black/60" : "bg-black/20 backdrop-blur-md"
           } p-6 sm:p-8 md:p-12 rounded-3xl border border-white/10`}
           initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           {/* Small Badge */}
           <motion.div

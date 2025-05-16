@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
+import { LoadingScreen } from "@/components/LoadingScreen";
 
 const inter = Inter({ subsets: ["latin"] });
 const familijenGrotesk = Familjen_Grotesk({
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={[inter.className, familijenGrotesk.className].join(" ")}>
+        <LoadingScreen />
         {children}
       </body>
     </html>

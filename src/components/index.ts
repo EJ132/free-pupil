@@ -3,3 +3,4 @@ export * from "./Navbar6";
 export * from "./NewNavbar";
 export * from "./Footer7";
 export * from "./GiveLivelyWidget";
+export * from "./LoadingScreen";
