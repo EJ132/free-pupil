@@ -2,6 +2,7 @@
 
 import { motion, LazyMotion, domAnimation, m, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 import HomePageLayout6Image from "../../../public/images/home/HomePageLayout6Image2.png";
 
@@ -102,12 +103,13 @@ export const HomePageLayout6 = () => {
               }
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             >
-              <img
+              <Image
                 src={image.src}
                 className="w-full object-cover shadow-[0_0_30px_0px_rgba(59,130,246,0.2)] rounded-xl"
                 alt={image.alt || ""}
                 width={2000}
                 height={2000}
+                priority={false}
               />
             </m.div>
           </div>

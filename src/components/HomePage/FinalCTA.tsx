@@ -19,17 +19,25 @@ export const FinalCTA = memo(() => {
   const { heading, subheading, description } = {
     ...FinalCTADefaults,
   } as Props;
-  
+
   const isMobile = useIsMobile();
 
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end end"]
+    offset: ["start end", "end end"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], isMobile ? [1, 1, 1] : [0.8, 1.1, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], isMobile ? [1, 1, 1] : [0, 1, 1]);
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    isMobile ? [1, 1, 1] : [0.8, 1.1, 1]
+  );
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 1],
+    isMobile ? [1, 1, 1] : [0, 1, 1]
+  );
 
   return (
     <section
@@ -40,20 +48,28 @@ export const FinalCTA = memo(() => {
       <div className="absolute inset-0">
         <motion.div
           className="absolute inset-0"
-          animate={isMobile ? {} : {
-            background: [
-              "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
-              "radial-gradient(circle at 100% 100%, rgba(147, 51, 234, 0.15) 0%, transparent 50%)",
-              "radial-gradient(circle at 0% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
-              "radial-gradient(circle at 100% 0%, rgba(147, 51, 234, 0.15) 0%, transparent 50%)",
-              "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
-            ],
-          }}
-          transition={isMobile ? {} : {
-            duration: 10,
-            repeat: Infinity,
-            repeatType: "loop",
-          }}
+          animate={
+            isMobile
+              ? {}
+              : {
+                  background: [
+                    "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
+                    "radial-gradient(circle at 100% 100%, rgba(147, 51, 234, 0.15) 0%, transparent 50%)",
+                    "radial-gradient(circle at 0% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
+                    "radial-gradient(circle at 100% 0%, rgba(147, 51, 234, 0.15) 0%, transparent 50%)",
+                    "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
+                  ],
+                }
+          }
+          transition={
+            isMobile
+              ? {}
+              : {
+                  duration: 10,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }
+          }
         />
       </div>
 
@@ -74,16 +90,24 @@ export const FinalCTA = memo(() => {
                   y: 100,
                   opacity: 0,
                 }}
-                animate={isMobile ? {} : {
-                  y: -100,
-                  opacity: [0, 1, 0],
-                }}
-                transition={isMobile ? {} : {
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                  ease: "easeOut",
-                }}
+                animate={
+                  isMobile
+                    ? {}
+                    : {
+                        y: -100,
+                        opacity: [0, 1, 0],
+                      }
+                }
+                transition={
+                  isMobile
+                    ? {}
+                    : {
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: i * 0.5,
+                        ease: "easeOut",
+                      }
+                }
                 style={{
                   left: `${20 + i * 12}%`,
                 }}
@@ -154,7 +178,9 @@ export const FinalCTA = memo(() => {
                   <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     {stat.number}
                   </div>
-                  <div className="text-xs sm:text-sm text-white/70 mt-1 sm:mt-2">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-white/70 mt-1 sm:mt-2">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
@@ -167,11 +193,16 @@ export const FinalCTA = memo(() => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 1 }}
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Button
                   size="sm"
                   className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 group rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base"
-                  onClick={() => window.location.href = "#give-lively-widget-section"}
+                  onClick={() =>
+                    (window.location.href = "#give-lively-widget-section")
+                  }
                 >
                   <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:animate-pulse" />
                   Donate Now
@@ -179,12 +210,19 @@ export const FinalCTA = memo(() => {
                 </Button>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Button
                   size="sm"
                   variant="secondary-alt"
-                  className={`text-white border-2 border-white/20 hover:border-white/40 hover:bg-white/10 ${isMobile ? '' : 'backdrop-blur-sm'} transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base`}
-                  onClick={() => window.location.href = "#give-lively-widget-section"}
+                  className={`text-white border-2 border-white/20 hover:border-white/40 hover:bg-white/10 ${
+                    isMobile ? "" : "backdrop-blur-sm"
+                  } transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base`}
+                  onClick={() =>
+                    (window.location.href = "#give-lively-widget-section")
+                  }
                 >
                   Learn More
                 </Button>
@@ -194,14 +232,18 @@ export const FinalCTA = memo(() => {
 
           {/* Testimonial */}
           <motion.div
-            className={`mt-12 sm:mt-16 p-6 sm:p-8 ${isMobile ? 'bg-gray-900/70' : 'bg-gray-900/50 backdrop-blur-sm'} rounded-3xl border border-white/10`}
+            className={`mt-12 sm:mt-16 p-6 sm:p-8 ${
+              isMobile ? "bg-gray-900/70" : "bg-gray-900/50 backdrop-blur-sm"
+            } rounded-3xl border border-white/10`}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <p className="text-base sm:text-lg text-white/90 italic mb-3 sm:mb-4">
-              &ldquo;Every dollar donated to Free Pupil goes directly toward changing a child&apos;s life. We maintain a 95% program expense ratio, ensuring your generosity creates maximum impact.&rdquo;
+              &ldquo;Every dollar donated to Free Pupil goes directly toward
+              changing a child&apos;s life. We maintain a 95% program expense
+              ratio, ensuring your generosity creates maximum impact.&rdquo;
             </p>
             <p className="text-white/70">- Gabriel Gonzalez, Founder</p>
           </motion.div>
@@ -211,8 +253,11 @@ export const FinalCTA = memo(() => {
   );
 });
 
+FinalCTA.displayName = "FinalCTA";
+
 export const FinalCTADefaults: FinalCTAProps = {
   heading: "Be the Change",
   subheading: "They Need Today",
-  description: "Your support can transform a child's future. Every contribution, no matter the size, makes a profound difference in the lives of underprivileged youth.",
+  description:
+    "Your support can transform a child's future. Every contribution, no matter the size, makes a profound difference in the lives of underprivileged youth.",
 };

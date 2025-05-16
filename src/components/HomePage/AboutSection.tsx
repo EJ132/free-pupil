@@ -36,13 +36,25 @@ export const AboutSection = memo(() => {
   const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   // Parallax effects - disabled on mobile
-  const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [100, -100]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], isMobile ? [1, 1, 1] : [0.8, 1, 0.8]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], isMobile ? [1, 1, 1, 1] : [0, 1, 1, 0]);
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isMobile ? [0, 0] : [100, -100]
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    isMobile ? [1, 1, 1] : [0.8, 1, 0.8]
+  );
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    isMobile ? [1, 1, 1, 1] : [0, 1, 1, 0]
+  );
 
   // Stagger children animation
   const containerVariants = {
@@ -74,44 +86,59 @@ export const AboutSection = memo(() => {
     >
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black" />
-      
+
       {/* Animated Blobs - static on mobile */}
       <motion.div
         className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-        animate={isMobile ? {} : {
-          x: [0, 100, 0],
-          y: [0, -100, 0],
-        }}
-        transition={isMobile ? {} : {
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
+        animate={
+          isMobile
+            ? {}
+            : {
+                x: [0, 100, 0],
+                y: [0, -100, 0],
+              }
+        }
+        transition={
+          isMobile
+            ? {}
+            : {
+                duration: 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }
+        }
       />
       <motion.div
         className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        animate={isMobile ? {} : {
-          x: [0, -100, 0],
-          y: [0, 100, 0],
-        }}
-        transition={isMobile ? {} : {
-          duration: 15,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
+        animate={
+          isMobile
+            ? {}
+            : {
+                x: [0, -100, 0],
+                y: [0, 100, 0],
+              }
+        }
+        transition={
+          isMobile
+            ? {}
+            : {
+                duration: 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }
+        }
       />
 
-      <motion.div
-        className="container relative z-10"
-        style={{ opacity }}
-      >
+      <motion.div className="container relative z-10" style={{ opacity }}>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 items-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className={`${isMobile ? 'bg-black/30' : 'bg-black/10 backdrop-blur-sm'} rounded-3xl p-6 sm:p-8 border border-white/10`}
+            className={`${
+              isMobile ? "bg-black/30" : "bg-black/10 backdrop-blur-sm"
+            } rounded-3xl p-6 sm:p-8 border border-white/10`}
           >
             <motion.h2
               variants={itemVariants}
@@ -120,14 +147,12 @@ export const AboutSection = memo(() => {
               <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                 Every Child
               </span>{" "}
-              <span className="text-white">
-                Deserves a Chance to
-              </span>{" "}
+              <span className="text-white">Deserves a Chance to</span>{" "}
               <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                 Shine
               </span>
             </motion.h2>
-            
+
             <motion.p
               variants={itemVariants}
               className="mb-8 text-lg text-white/80"
@@ -142,9 +167,13 @@ export const AboutSection = memo(() => {
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className={`text-center ${isMobile ? 'bg-white/10' : 'bg-white/5 backdrop-blur-sm'} rounded-2xl p-2 sm:p-4 border border-white/10`}
+                  className={`text-center ${
+                    isMobile ? "bg-white/10" : "bg-white/5 backdrop-blur-sm"
+                  } rounded-2xl p-2 sm:p-4 border border-white/10`}
                   whileHover={isMobile ? {} : { scale: 1.1 }}
-                  transition={isMobile ? {} : { type: "spring", stiffness: 400 }}
+                  transition={
+                    isMobile ? {} : { type: "spring", stiffness: 400 }
+                  }
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0 }}
@@ -154,18 +183,17 @@ export const AboutSection = memo(() => {
                     className="text-xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
                   >
                     <CountUp end={parseInt(stat.number)} duration={2} />
-                    {stat.number.includes('+') && '+'}
+                    {stat.number.includes("+") && "+"}
                   </motion.div>
-                  <div className="text-xs sm:text-sm text-white/70 mt-1 sm:mt-2">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-white/70 mt-1 sm:mt-2">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
 
-          <motion.div
-            className="relative"
-            style={{ y, scale }}
-          >
+          <motion.div className="relative" style={{ y, scale }}>
             <motion.div
               className="relative overflow-hidden rounded-2xl"
               whileHover={{ scale: 1.02 }}
@@ -184,17 +212,23 @@ export const AboutSection = memo(() => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             </motion.div>
-            
+
             {/* Floating Card */}
             <motion.div
-              className={`absolute -bottom-6 -left-6 ${isMobile ? 'bg-gray-900/95' : 'bg-gray-900/90 backdrop-blur-sm'} p-4 sm:p-6 rounded-2xl border border-white/10`}
+              className={`absolute -bottom-6 -left-6 ${
+                isMobile ? "bg-gray-900/95" : "bg-gray-900/90 backdrop-blur-sm"
+              } p-4 sm:p-6 rounded-2xl border border-white/10`}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <div className="text-xl sm:text-2xl font-bold text-white mb-1">97%</div>
-              <div className="text-xs sm:text-sm text-white/70">Success Rate</div>
+              <div className="text-xl sm:text-2xl font-bold text-white mb-1">
+                97%
+              </div>
+              <div className="text-xs sm:text-sm text-white/70">
+                Success Rate
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -203,26 +237,28 @@ export const AboutSection = memo(() => {
   );
 });
 
+AboutSection.displayName = "AboutSection";
+
 // CountUp Component
 const CountUp = memo(({ end, duration }: { end: number; duration: number }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  
+
   useEffect(() => {
     let startTime: number;
     let animationFrameId: number;
-    
+
     const updateCount = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-      
+
       setCount(Math.floor(progress * end));
-      
+
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(updateCount);
       }
     };
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -231,11 +267,11 @@ const CountUp = memo(({ end, duration }: { end: number; duration: number }) => {
       },
       { threshold: 0.5 }
     );
-    
+
     if (ref.current) {
       observer.observe(ref.current);
     }
-    
+
     return () => {
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
@@ -243,9 +279,11 @@ const CountUp = memo(({ end, duration }: { end: number; duration: number }) => {
       observer.disconnect();
     };
   }, [end, duration]);
-  
+
   return <span ref={ref}>{count}</span>;
 });
+
+CountUp.displayName = "CountUp";
 
 export const AboutSectionDefaults: AboutSectionProps = {
   heading: "Every Child Deserves a Chance to Shine",

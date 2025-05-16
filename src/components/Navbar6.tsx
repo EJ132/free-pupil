@@ -307,10 +307,13 @@ const SubMenu = ({
                         className="flex flex-col py-2"
                       >
                         <div className="relative mb-3 w-full overflow-hidden pt-[56.25%]">
-                          <img
-                            src={megaMenu.blogFeatured.image.src}
-                            alt={megaMenu.blogFeatured.image.alt}
+                          <Image
+                            src={megaMenu.blogFeatured.image.src || ""}
+                            alt={megaMenu.blogFeatured.image.alt || ""}
                             className="absolute inset-0 size-full object-cover"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            priority={false}
                           />
                         </div>
                         <div className="mt-2 flex max-w-[18rem] flex-col justify-start md:mt-0">

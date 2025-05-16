@@ -41,21 +41,21 @@ export const SuccessStories = memo(() => {
     enter: (direction: number) => {
       return {
         x: direction > 0 ? 1000 : -1000,
-        opacity: 0
+        opacity: 0,
       };
     },
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (direction: number) => {
       return {
         zIndex: 0,
         x: direction < 0 ? 1000 : -1000,
-        opacity: 0
+        opacity: 0,
       };
-    }
+    },
   };
 
   const swipeConfidenceThreshold = 10000;
@@ -78,15 +78,18 @@ export const SuccessStories = memo(() => {
     <section className="relative px-[5%] py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black via-gray-950 to-black overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
             45deg,
             transparent,
             transparent 35px,
             rgba(59, 130, 246, 0.1) 35px,
             rgba(59, 130, 246, 0.1) 70px
-          )`
-        }} />
+          )`,
+          }}
+        />
       </div>
 
       <div className="container relative z-10">
@@ -121,8 +124,12 @@ export const SuccessStories = memo(() => {
               animate="center"
               exit="exit"
               transition={{
-                x: { type: "spring", stiffness: isMobile ? 100 : 300, damping: isMobile ? 20 : 30 },
-                opacity: { duration: 0.3 }
+                x: {
+                  type: "spring",
+                  stiffness: isMobile ? 100 : 300,
+                  damping: isMobile ? 20 : 30,
+                },
+                opacity: { duration: 0.3 },
               }}
               drag={isMobile ? false : "x"}
               dragConstraints={{ left: 0, right: 0 }}
@@ -139,7 +146,13 @@ export const SuccessStories = memo(() => {
               }}
               className="w-full"
             >
-              <div className={`${isMobile ? 'bg-gray-900/80' : 'bg-gray-900/50 backdrop-blur-sm'} border border-white/10 rounded-3xl p-4 sm:p-8 md:p-12`}>
+              <div
+                className={`${
+                  isMobile
+                    ? "bg-gray-900/80"
+                    : "bg-gray-900/50 backdrop-blur-sm"
+                } border border-white/10 rounded-3xl p-4 sm:p-8 md:p-12`}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="order-2 md:order-1">
                     <motion.div
@@ -149,7 +162,7 @@ export const SuccessStories = memo(() => {
                     >
                       {/* Quote Icon */}
                       <Quote className="w-12 h-12 text-blue-500 mb-6" />
-                      
+
                       <p className="text-xl text-white/90 italic mb-6 leading-relaxed">
                         &ldquo;{stories[currentIndex].quote}&rdquo;
                       </p>
@@ -168,7 +181,9 @@ export const SuccessStories = memo(() => {
                       </p>
 
                       <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl p-4 border border-white/10">
-                        <p className="text-sm text-white/60 mb-1">Achievement</p>
+                        <p className="text-sm text-white/60 mb-1">
+                          Achievement
+                        </p>
                         <p className="text-white font-semibold">
                           {stories[currentIndex].achievement}
                         </p>
@@ -197,18 +212,26 @@ export const SuccessStories = memo(() => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                       </div>
-                      
+
                       {/* Floating Badge - no animation on mobile */}
                       <motion.div
                         className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl z-10 border-2 border-white"
-                        animate={isMobile ? {} : {
-                          y: [0, -10, 0],
-                        }}
-                        transition={isMobile ? {} : {
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        }}
+                        animate={
+                          isMobile
+                            ? {}
+                            : {
+                                y: [0, -10, 0],
+                              }
+                        }
+                        transition={
+                          isMobile
+                            ? {}
+                            : {
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }
+                        }
                       >
                         Success Story #{currentIndex + 1}
                       </motion.div>
@@ -221,13 +244,17 @@ export const SuccessStories = memo(() => {
 
           {/* Navigation Buttons */}
           <button
-            className={`absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-12 ${isMobile ? 'bg-white/20' : 'bg-white/10 backdrop-blur-sm'} hover:bg-white/30 rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10`}
+            className={`absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-12 ${
+              isMobile ? "bg-white/20" : "bg-white/10 backdrop-blur-sm"
+            } hover:bg-white/30 rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10`}
             onClick={() => paginate(-1)}
           >
             <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
           </button>
           <button
-            className={`absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-12 ${isMobile ? 'bg-white/20' : 'bg-white/10 backdrop-blur-sm'} hover:bg-white/30 rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10`}
+            className={`absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-12 ${
+              isMobile ? "bg-white/20" : "bg-white/10 backdrop-blur-sm"
+            } hover:bg-white/30 rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10`}
             onClick={() => paginate(1)}
           >
             <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
@@ -256,36 +283,47 @@ export const SuccessStories = memo(() => {
   );
 });
 
+SuccessStories.displayName = "SuccessStories";
+
 export const SuccessStoriesDefaults: SuccessStoriesProps = {
   heading: "Stories That Inspire",
-  subheading: "Real stories of transformation and hope from the children whose lives we've touched.",
+  subheading:
+    "Real stories of transformation and hope from the children whose lives we've touched.",
   stories: [
     {
       id: 1,
       name: "Sarah Martinez",
       age: "17",
-      story: "Coming from a single-parent household with limited resources, Sarah joined Free Pupil at age 10. Through our educational support and mentorship program, she discovered her passion for science.",
-      achievement: "Full scholarship to Stanford University, pursuing Biomedical Engineering",
+      story:
+        "Coming from a single-parent household with limited resources, Sarah joined Free Pupil at age 10. Through our educational support and mentorship program, she discovered her passion for science.",
+      achievement:
+        "Full scholarship to Stanford University, pursuing Biomedical Engineering",
       image: HomePageLayout22Image.src,
-      quote: "Free Pupil didn't just give me education; they gave me hope and a future I never dreamed possible."
+      quote:
+        "Free Pupil didn't just give me education; they gave me hope and a future I never dreamed possible.",
     },
     {
       id: 2,
       name: "Michael Chen",
       age: "19",
-      story: "Michael struggled with reading difficulties and low self-esteem when he joined our program. With specialized tutoring and unwavering support, he not only overcame his challenges but excelled.",
-      achievement: "Published author and motivational speaker, helping other children with learning disabilities",
+      story:
+        "Michael struggled with reading difficulties and low self-esteem when he joined our program. With specialized tutoring and unwavering support, he not only overcame his challenges but excelled.",
+      achievement:
+        "Published author and motivational speaker, helping other children with learning disabilities",
       image: HomePageLayout22Image.src,
-      quote: "They saw potential in me when I couldn't see it in myself. Now I help others find their own light."
+      quote:
+        "They saw potential in me when I couldn't see it in myself. Now I help others find their own light.",
     },
     {
       id: 3,
       name: "Amira Johnson",
       age: "16",
-      story: "Amira joined Free Pupil after losing both parents. Our comprehensive support system provided not just education but emotional support and life skills training that helped her thrive.",
+      story:
+        "Amira joined Free Pupil after losing both parents. Our comprehensive support system provided not just education but emotional support and life skills training that helped her thrive.",
       achievement: "National debate champion and community youth leader",
       image: HomePageLayout22Image.src,
-      quote: "Free Pupil became my family when I needed one most. They taught me that circumstances don't define destiny."
-    }
-  ]
+      quote:
+        "Free Pupil became my family when I needed one most. They taught me that circumstances don't define destiny.",
+    },
+  ],
 };
