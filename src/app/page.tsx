@@ -1,34 +1,50 @@
 import {
   Footer7,
   GiveLivelyWidget,
-  HomePageCTA25,
-  HomePageHeader5,
-  HomePageLayout22,
-  HomePageLayout242,
-  HomePageLayout6,
-  Navbar6,
+  NewHeroHeader,
+  AboutSection,
+  ImpactSection,
+  SuccessStories,
+  FinalCTA,
+  NewNavbar,
 } from "@/components";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-black overflow-x-hidden">
+    <>
       <title>
-        Free Pupil | A non-profit organization that helps underprivileged
-        children
+        Free Pupil | Transforming Lives Through Education & Opportunity
       </title>
 
-      <Navbar6 />
+      <NewNavbar />
 
-      <HomePageHeader5 />
-      <HomePageLayout6 />
-      <HomePageLayout242 />
+      <main className="flex min-h-screen flex-col bg-black overflow-x-hidden">
+        {/* Hero - Introduce the mission with dramatic visuals */}
+        <NewHeroHeader />
 
-      <HomePageLayout22 />
-      <HomePageCTA25 />
+        {/* About - Tell the story of who we are and why we exist */}
+        <section id="about">
+          <AboutSection />
+        </section>
 
-      <GiveLivelyWidget />
+        {/* Impact - Show the difference we make with data */}
+        <section id="impact">
+          <ImpactSection />
+        </section>
 
-      <Footer7 />
-    </main>
+        {/* Success Stories - Share real transformations */}
+        <section id="stories">
+          <SuccessStories />
+        </section>
+
+        {/* Final CTA - Inspire action with emotion */}
+        <FinalCTA />
+
+        {/* Donation Widget */}
+        <GiveLivelyWidget />
+
+        <Footer7 />
+      </main>
+    </>
   );
 }

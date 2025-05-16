@@ -50,7 +50,7 @@ export const Footer7 = () => {
   return (
     <footer
       ref={ref}
-      className="px-[5%] py-12 md:py-18 lg:py-20 bg-gradient-to-br from-gray-950 via-black to-gray-900"
+      className="px-[5%] py-12 md:py-18 lg:py-20 bg-black border-t border-white/10"
     >
       <div className="container">
         <motion.div
@@ -61,18 +61,18 @@ export const Footer7 = () => {
           <div className="flex flex-col items-center">
             <a
               href={logo.url}
-              className="mb-8 transition-transform hover:scale-105 duration-300"
+              className="mb-6 md:mb-8 transition-transform hover:scale-105 duration-300"
             >
               <Image
                 src={logo.src}
                 alt={logo.alt || ""}
                 className="inline-block invert opacity-90 hover:opacity-100 transition-opacity"
-                width={500}
-                height={500}
+                width={300}
+                height={300}
               />
             </a>
           </div>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <div className="flex flex-col-reverse items-center justify-between pb-4 pt-6 text-center text-sm md:flex-row md:pb-0 md:pt-8">
             <div className="flex flex-col items-center md:items-start gap-2">
               <p className="mt-8 md:mt-0 text-white/80 hover:text-white transition-colors">
@@ -84,7 +84,7 @@ export const Footer7 = () => {
             </div>
 
             <div className="flex flex-col gap-4 md:flex-row md:gap-8">
-              <a className="text-blue-400 hover:text-purple-400 transition-colors">
+              <a className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text hover:from-blue-500 hover:to-purple-500 transition-all font-semibold">
                 More Coming Soon...
               </a>
             </div>

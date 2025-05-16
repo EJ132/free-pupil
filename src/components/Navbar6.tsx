@@ -63,25 +63,25 @@ export const Navbar6 = () => {
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
-    <nav className="relative z-[999] flex min-h-16 w-full items-center border-b border-gray-800 bg-black px-[5%] md:min-h-18">
+    <nav className="relative z-[999] flex min-h-16 w-full items-center border-b border-white/10 bg-black/80 backdrop-blur-lg px-[5%] md:min-h-18 fixed top-0 left-0 right-0">
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
         <div className="flex items-center">
           <Image
             src={FreePupilLogo.src}
             alt={FreePupilLogo.alt || ""}
-            className="inline-block -ml-6 md:-ml-4 invert"
+            className="inline-block -ml-6 md:-ml-4 invert opacity-90 hover:opacity-100 transition-opacity"
             width={80}
             height={80}
           />
           <h1
-            className="text-3xl font-bold text-white hover:cursor-pointer -mt-1 -ml-1"
+            className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent hover:cursor-pointer -mt-1 -ml-1 transition-all hover:scale-105"
             onClick={() => (window.location.href = "/")}
           >
             Free Pupil
           </h1>
         </div>
 
-        <div className="absolute hidden h-screen overflow-auto border-b border-gray-800 bg-black px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-none lg:px-0 lg:pt-0">
+        <div className="absolute hidden h-screen overflow-auto border-b border-white/10 bg-black/95 backdrop-blur-lg px-[5%] pb-24 pt-4 md:pb-0 lg:static lg:ml-6 lg:flex lg:h-auto lg:flex-1 lg:items-center lg:justify-between lg:border-none lg:bg-transparent lg:px-0 lg:pt-0">
           <div className="flex flex-col items-center lg:flex-row">
             {/* {navLinks.map((navLink, index) => (
               <div key={index}>
@@ -110,8 +110,8 @@ export const Navbar6 = () => {
                 className={cx(
                   "transition-all duration-300",
                   button.variant === "secondary-alt"
-                    ? "text-white hover:text-blue-400 border-blue-400 transition-colors group"
-                    : "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-lg shadow-blue-500/20"
+                    ? "text-white hover:text-blue-400 border-white/20 hover:border-white/40 transition-all hover:bg-white/10"
+                    : "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 border-0 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transform hover:scale-105 transition-all"
                 )}
                 onClick={() =>
                   (window.location.href = "#give-lively-widget-section")
