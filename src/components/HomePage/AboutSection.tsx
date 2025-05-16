@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect, memo } from "react";
 import Image from "next/image";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 import HomePageLayout6Image from "../../../public/images/home/HomePageLayout6Image2.png";
 
@@ -26,21 +27,22 @@ type Props = {
 export type AboutSectionProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const AboutSection = () => {
+export const AboutSection = memo(() => {
   const { heading, description, stats, image } = {
     ...AboutSectionDefaults,
   } as Props;
 
   const ref = useRef(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  // Parallax effects
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  // Parallax effects - disabled on mobile
+  const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [100, -100]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], isMobile ? [1, 1, 1] : [0.8, 1, 0.8]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], isMobile ? [1, 1, 1, 1] : [0, 1, 1, 0]);
 
   // Stagger children animation
   const containerVariants = {
@@ -73,14 +75,14 @@ export const AboutSection = () => {
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black" />
       
-      {/* Animated Blobs */}
+      {/* Animated Blobs - static on mobile */}
       <motion.div
         className="absolute top-1/2 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-        animate={{
+        animate={isMobile ? {} : {
           x: [0, 100, 0],
           y: [0, -100, 0],
         }}
-        transition={{
+        transition={isMobile ? {} : {
           duration: 20,
           repeat: Infinity,
           repeatType: "reverse",
@@ -88,11 +90,11 @@ export const AboutSection = () => {
       />
       <motion.div
         className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        animate={{
+        animate={isMobile ? {} : {
           x: [0, -100, 0],
           y: [0, 100, 0],
         }}
-        transition={{
+        transition={isMobile ? {} : {
           duration: 15,
           repeat: Infinity,
           repeatType: "reverse",
@@ -109,7 +111,7 @@ export const AboutSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className="bg-black/10 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-white/10"
+            className={`${isMobile ? 'bg-black/30' : 'bg-black/10 backdrop-blur-sm'} rounded-3xl p-6 sm:p-8 border border-white/10`}
           >
             <motion.h2
               variants={itemVariants}
@@ -140,9 +142,9 @@ export const AboutSection = () => {
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-2 sm:p-4 border border-white/10"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+                  className={`text-center ${isMobile ? 'bg-white/10' : 'bg-white/5 backdrop-blur-sm'} rounded-2xl p-2 sm:p-4 border border-white/10`}
+                  whileHover={isMobile ? {} : { scale: 1.1 }}
+                  transition={isMobile ? {} : { type: "spring", stiffness: 400 }}
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0 }}
@@ -175,13 +177,17 @@ export const AboutSection = () => {
                 className="w-full object-cover"
                 width={800}
                 height={600}
+                loading="lazy"
+                quality={isMobile ? 75 : 90}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             </motion.div>
             
             {/* Floating Card */}
             <motion.div
-              className="absolute -bottom-6 -left-6 bg-gray-900/90 backdrop-blur-sm p-4 sm:p-6 rounded-2xl border border-white/10"
+              className={`absolute -bottom-6 -left-6 ${isMobile ? 'bg-gray-900/95' : 'bg-gray-900/90 backdrop-blur-sm'} p-4 sm:p-6 rounded-2xl border border-white/10`}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -195,10 +201,10 @@ export const AboutSection = () => {
       </motion.div>
     </section>
   );
-};
+});
 
 // CountUp Component
-const CountUp = ({ end, duration }: { end: number; duration: number }) => {
+const CountUp = memo(({ end, duration }: { end: number; duration: number }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   
@@ -239,9 +245,7 @@ const CountUp = ({ end, duration }: { end: number; duration: number }) => {
   }, [end, duration]);
   
   return <span ref={ref}>{count}</span>;
-};
-
-import { useState, useEffect } from "react";
+});
 
 export const AboutSectionDefaults: AboutSectionProps = {
   heading: "Every Child Deserves a Chance to Shine",

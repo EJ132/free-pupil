@@ -5,12 +5,14 @@ import { Button } from "@relume_io/relume-ui";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 import FreePupilLogo from "../../public/svgs/FreePupilLogo.svg";
 
 export const NewNavbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +28,7 @@ export const NewNavbar = () => {
         fixed top-0 left-0 right-0 z-[999] 
         transition-all duration-300
         ${isScrolled 
-          ? "bg-black/95 backdrop-blur-lg border-b border-white/10" 
+          ? `${isMobile ? 'bg-black/95' : 'bg-black/95 backdrop-blur-lg'} border-b border-white/10` 
           : "bg-transparent border-b border-transparent"
         }
       `}
@@ -113,7 +115,7 @@ export const NewNavbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-black/95 backdrop-blur-lg border-t border-white/10"
+            className={`lg:hidden ${isMobile ? 'bg-black/95' : 'bg-black/95 backdrop-blur-lg'} border-t border-white/10`}
           >
             <div className="container mx-auto px-[5%] py-6">
               <div className="flex flex-col gap-4">

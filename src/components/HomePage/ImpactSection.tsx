@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import Image from "next/image";
 import { RxChevronRight } from "react-icons/rx";
 import { Button } from "@relume_io/relume-ui";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 import HomePageLayoutTreeSVG from "../../../public/svgs/Oak_Tree_Black.svg";
 import HomePageLayoutSchoolSVG from "../../../public/svgs/School_Building_Black.svg";
@@ -32,20 +33,21 @@ type Props = {
 export type ImpactSectionProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const ImpactSection = () => {
+export const ImpactSection = memo(() => {
   const { heading, subheading, cards } = {
     ...ImpactSectionDefaults,
   } as Props;
 
   const ref = useRef(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  // Smooth spring animation
+  // Smooth spring animation - disabled on mobile
   const springConfig = { damping: 15, stiffness: 100 };
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], [100, -100]), springConfig);
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [100, -100]), springConfig);
 
   return (
     <section ref={ref} className="relative px-[5%] py-16 md:py-24 lg:py-32 bg-black overflow-hidden">
@@ -57,10 +59,10 @@ export const ImpactSection = () => {
           style={{
             backgroundImage: `radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)`,
           }}
-          animate={{
+          animate={isMobile ? {} : {
             backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 20,
             repeat: Infinity,
             repeatType: "reverse",
@@ -117,8 +119,8 @@ export const ImpactSection = () => {
             >
               <motion.div
                 className="relative group h-full"
-                whileHover={{ y: -10 }}
-                transition={{ duration: 0.3 }}
+                whileHover={isMobile ? {} : { y: -10 }}
+                transition={isMobile ? {} : { duration: 0.3 }}
               >
                 {/* Card Background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
@@ -126,10 +128,10 @@ export const ImpactSection = () => {
                 {/* Glow Effect */}
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"
-                  animate={{
+                  animate={isMobile ? {} : {
                     scale: [1, 1.1, 1],
                   }}
-                  transition={{
+                  transition={isMobile ? {} : {
                     duration: 3,
                     repeat: Infinity,
                     repeatType: "reverse",
@@ -137,7 +139,7 @@ export const ImpactSection = () => {
                 />
 
                 {/* Card Content */}
-                <div className="relative bg-black/30 backdrop-blur-md border border-white/20 rounded-3xl p-8 h-full transform transition-transform duration-300 group-hover:border-white/30">
+                <div className={`relative ${isMobile ? 'bg-black/40' : 'bg-black/30 backdrop-blur-md'} border border-white/20 rounded-3xl p-8 h-full transform transition-transform duration-300 group-hover:border-white/30`}>
                   {/* Icon Container */}
                   <motion.div 
                     className="mb-6"
@@ -216,7 +218,7 @@ export const ImpactSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export const ImpactSectionDefaults: ImpactSectionProps = {
   heading: "Creating Lasting Impact",

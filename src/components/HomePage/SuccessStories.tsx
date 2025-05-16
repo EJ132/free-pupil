@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@relume_io/relume-ui";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import Image from "next/image";
 
 import HomePageLayout22Image from "../../../public/images/home/HomePageLayout22Image2.png";
@@ -27,13 +28,14 @@ type Props = {
 export type SuccessStoriesProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const SuccessStories = () => {
+export const SuccessStories = memo(() => {
   const { heading, subheading, stories } = {
     ...SuccessStoriesDefaults,
   } as Props;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const isMobile = useIsMobile();
 
   const slideVariants = {
     enter: (direction: number) => {
@@ -119,13 +121,14 @@ export const SuccessStories = () => {
               animate="center"
               exit="exit"
               transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
+                x: { type: "spring", stiffness: isMobile ? 100 : 300, damping: isMobile ? 20 : 30 },
                 opacity: { duration: 0.3 }
               }}
-              drag="x"
+              drag={isMobile ? false : "x"}
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={1}
               onDragEnd={(e, { offset, velocity }) => {
+                if (isMobile) return;
                 const swipe = swipePower(offset.x, velocity.x);
 
                 if (swipe < -swipeConfidenceThreshold) {
@@ -136,7 +139,7 @@ export const SuccessStories = () => {
               }}
               className="w-full"
             >
-              <div className="bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-3xl p-4 sm:p-8 md:p-12">
+              <div className={`${isMobile ? 'bg-gray-900/80' : 'bg-gray-900/50 backdrop-blur-sm'} border border-white/10 rounded-3xl p-4 sm:p-8 md:p-12`}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="order-2 md:order-1">
                     <motion.div
@@ -187,17 +190,21 @@ export const SuccessStories = () => {
                           className="w-full h-auto object-cover"
                           width={600}
                           height={600}
+                          loading="lazy"
+                          quality={isMobile ? 75 : 90}
+                          placeholder="blur"
+                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                       </div>
                       
-                      {/* Floating Badge */}
+                      {/* Floating Badge - no animation on mobile */}
                       <motion.div
                         className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-xl z-10 border-2 border-white"
-                        animate={{
+                        animate={isMobile ? {} : {
                           y: [0, -10, 0],
                         }}
-                        transition={{
+                        transition={isMobile ? {} : {
                           duration: 2,
                           repeat: Infinity,
                           repeatType: "reverse",
@@ -214,13 +221,13 @@ export const SuccessStories = () => {
 
           {/* Navigation Buttons */}
           <button
-            className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10"
+            className={`absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-12 ${isMobile ? 'bg-white/20' : 'bg-white/10 backdrop-blur-sm'} hover:bg-white/30 rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10`}
             onClick={() => paginate(-1)}
           >
             <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
           </button>
           <button
-            className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10"
+            className={`absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-12 ${isMobile ? 'bg-white/20' : 'bg-white/10 backdrop-blur-sm'} hover:bg-white/30 rounded-full p-2 md:p-3 transition-all duration-300 border border-white/20 z-10`}
             onClick={() => paginate(1)}
           >
             <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
@@ -247,7 +254,7 @@ export const SuccessStories = () => {
       </div>
     </section>
   );
-};
+});
 
 export const SuccessStoriesDefaults: SuccessStoriesProps = {
   heading: "Stories That Inspire",

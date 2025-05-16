@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import { Button } from "@relume_io/relume-ui";
 import { Heart, ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Props = {
   heading: string;
@@ -14,10 +15,12 @@ type Props = {
 export type FinalCTAProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
-export const FinalCTA = () => {
+export const FinalCTA = memo(() => {
   const { heading, subheading, description } = {
     ...FinalCTADefaults,
   } as Props;
+  
+  const isMobile = useIsMobile();
 
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -25,8 +28,8 @@ export const FinalCTA = () => {
     offset: ["start end", "end end"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], [0, 1, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], isMobile ? [1, 1, 1] : [0.8, 1.1, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], isMobile ? [1, 1, 1] : [0, 1, 1]);
 
   return (
     <section
@@ -37,7 +40,7 @@ export const FinalCTA = () => {
       <div className="absolute inset-0">
         <motion.div
           className="absolute inset-0"
-          animate={{
+          animate={isMobile ? {} : {
             background: [
               "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
               "radial-gradient(circle at 100% 100%, rgba(147, 51, 234, 0.15) 0%, transparent 50%)",
@@ -46,7 +49,7 @@ export const FinalCTA = () => {
               "radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
             ],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 10,
             repeat: Infinity,
             repeatType: "loop",
@@ -71,11 +74,11 @@ export const FinalCTA = () => {
                   y: 100,
                   opacity: 0,
                 }}
-                animate={{
+                animate={isMobile ? {} : {
                   y: -100,
                   opacity: [0, 1, 0],
                 }}
-                transition={{
+                transition={isMobile ? {} : {
                   duration: 3,
                   repeat: Infinity,
                   delay: i * 0.5,
@@ -180,7 +183,7 @@ export const FinalCTA = () => {
                 <Button
                   size="sm"
                   variant="secondary-alt"
-                  className="text-white border-2 border-white/20 hover:border-white/40 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base"
+                  className={`text-white border-2 border-white/20 hover:border-white/40 hover:bg-white/10 ${isMobile ? '' : 'backdrop-blur-sm'} transition-all duration-300 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base`}
                   onClick={() => window.location.href = "#give-lively-widget-section"}
                 >
                   Learn More
@@ -191,7 +194,7 @@ export const FinalCTA = () => {
 
           {/* Testimonial */}
           <motion.div
-            className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-white/10"
+            className={`mt-12 sm:mt-16 p-6 sm:p-8 ${isMobile ? 'bg-gray-900/70' : 'bg-gray-900/50 backdrop-blur-sm'} rounded-3xl border border-white/10`}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -206,7 +209,7 @@ export const FinalCTA = () => {
       </motion.div>
     </section>
   );
-};
+});
 
 export const FinalCTADefaults: FinalCTAProps = {
   heading: "Be the Change",

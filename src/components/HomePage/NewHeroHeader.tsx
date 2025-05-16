@@ -2,24 +2,28 @@
 
 import { Button } from "@relume_io/relume-ui";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, memo } from "react";
 import Image from "next/image";
 import { Play, Heart } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 import HomeImage1 from "../../../public/images/home/HomeImage1.png";
 
-export const NewHeroHeader = () => {
+export const NewHeroHeader = memo(() => {
   const ref = useRef(null);
   const { scrollY } = useScroll();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const isMobile = useIsMobile();
   
-  // Parallax effects
-  const y = useTransform(scrollY, [0, 1000], [0, 200]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const scale = useTransform(scrollY, [0, 400], [1, 1.1]);
+  // Parallax effects - disable on mobile for performance
+  const y = useTransform(scrollY, [0, 1000], isMobile ? [0, 0] : [0, 200]);
+  const opacity = useTransform(scrollY, [0, 400], isMobile ? [1, 1] : [1, 0]);
+  const scale = useTransform(scrollY, [0, 400], isMobile ? [1, 1] : [1, 1.1]);
   
-  // Mouse movement effect
+  // Mouse movement effect - disable on mobile
   useEffect(() => {
+    if (isMobile) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
@@ -31,7 +35,7 @@ export const NewHeroHeader = () => {
     
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   return (
     <header ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -50,16 +54,16 @@ export const NewHeroHeader = () => {
         <div className="absolute inset-0 bg-black/70" />
       </motion.div>
 
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - static on mobile */}
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
         <motion.div
           className="absolute top-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-          animate={{
+          animate={isMobile ? {} : {
             x: [0, 100, 0],
             y: [0, -50, 0],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 20,
             repeat: Infinity,
             ease: "linear"
@@ -67,11 +71,11 @@ export const NewHeroHeader = () => {
         />
         <motion.div
           className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
-          animate={{
+          animate={isMobile ? {} : {
             x: [0, -100, 0],
             y: [0, 50, 0],
           }}
-          transition={{
+          transition={isMobile ? {} : {
             duration: 25,
             repeat: Infinity,
             ease: "linear"
@@ -85,7 +89,7 @@ export const NewHeroHeader = () => {
         style={{ opacity }}
       >
         <motion.div
-          className="max-w-4xl mx-auto bg-black/20 backdrop-blur-md p-6 sm:p-8 md:p-12 rounded-3xl border border-white/10"
+          className={`max-w-4xl mx-auto ${isMobile ? 'bg-black/60' : 'bg-black/20 backdrop-blur-md'} p-6 sm:p-8 md:p-12 rounded-3xl border border-white/10`}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -95,7 +99,7 @@ export const NewHeroHeader = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-md rounded-full text-xs sm:text-sm text-white mb-6 sm:mb-8 border border-white/30"
+            className={`inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 ${isMobile ? 'bg-white/20' : 'bg-white/10 backdrop-blur-md'} rounded-full text-xs sm:text-sm text-white mb-6 sm:mb-8 border border-white/30`}
           >
             <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
             <span>Making a difference since 2001</span>
@@ -159,7 +163,7 @@ export const NewHeroHeader = () => {
             <Button
               size="sm"
               variant="secondary-alt"
-              className="text-white border-2 border-white/30 hover:border-white/60 hover:bg-white/10 backdrop-blur-sm transform hover:scale-105 transition-all duration-300 group rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base"
+              className={`text-white border-2 border-white/30 hover:border-white/60 hover:bg-white/10 ${isMobile ? '' : 'backdrop-blur-sm'} transform hover:scale-105 transition-all duration-300 group rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base`}
               onClick={() => window.location.href = "#about"}
             >
               <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -195,7 +199,7 @@ export const NewHeroHeader = () => {
         </motion.div>
       </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - simpler animation on mobile */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: -20 }}
@@ -204,17 +208,17 @@ export const NewHeroHeader = () => {
       >
         <motion.div
           className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center cursor-pointer"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={isMobile ? {} : { y: [0, 10, 0] }}
+          transition={isMobile ? {} : { duration: 2, repeat: Infinity }}
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
           <motion.div
             className="w-1 h-3 bg-white rounded-full mt-2"
-            animate={{ y: [0, 16, 0], opacity: [1, 0, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={isMobile ? {} : { y: [0, 16, 0], opacity: [1, 0, 1] }}
+            transition={isMobile ? {} : { duration: 2, repeat: Infinity }}
           />
         </motion.div>
       </motion.div>
     </header>
   );
-};
+});
