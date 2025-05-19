@@ -224,42 +224,42 @@ SuccessStories.displayName = "SuccessStories";
 export const SuccessStoriesDefaults: SuccessStoriesProps = {
   heading: "Stories That Inspire",
   subheading:
-    "Real stories of transformation and hope from the children whose lives we've touched.",
+    "These are the stories we envision for every child. Your support can help make these dreams a reality.",
   stories: [
     {
       id: 1,
-      name: "Sarah Martinez",
+      name: "A Future Scientist",
       age: "17",
       story:
-        "Coming from a single-parent household with limited resources, Sarah joined Free Pupil at age 10. Through our educational support and mentorship program, she discovered her passion for science.",
+        "Imagine a young girl from a single-parent household who discovers her passion for science through our programs. With educational support and mentorship, she could pursue her dreams in STEM fields.",
       achievement:
-        "Full scholarship to Stanford University, pursuing Biomedical Engineering",
+        "Dreaming of college and a career in scientific research",
       image: HomePageLayout22Image.src,
       quote:
-        "Free Pupil didn't just give me education; they gave me hope and a future I never dreamed possible.",
+        "With your help, we can give children not just education, but hope and a future they never imagined possible.",
     },
     {
       id: 2,
-      name: "Michael Chen",
+      name: "Tomorrow's Leader",
       age: "19",
       story:
-        "Michael struggled with reading difficulties and low self-esteem when he joined our program. With specialized tutoring and unwavering support, he not only overcame his challenges but excelled.",
+        "Picture a student who struggles with learning challenges finding support through specialized tutoring. With the right help, they could overcome obstacles and inspire others facing similar difficulties.",
       achievement:
-        "Published author and motivational speaker, helping other children with learning disabilities",
+        "Aspiring to help other children overcome their challenges",
       image: HomePageLayout22Image.src,
       quote:
-        "They saw potential in me when I couldn't see it in myself. Now I help others find their own light.",
+        "Your support helps us see potential in every child and gives them the tools to find their own light.",
     },
     {
       id: 3,
-      name: "Amira Johnson",
+      name: "Community Champion",
       age: "16",
       story:
-        "Amira joined Free Pupil after losing both parents. Our comprehensive support system provided not just education but emotional support and life skills training that helped her thrive.",
-      achievement: "National debate champion and community youth leader",
+        "Envision a teen who finds family in our support system during difficult times. With comprehensive care, they could develop into a strong community leader who gives back to others.",
+      achievement: "Working to become a voice for youth in the community",
       image: HomePageLayout22Image.src,
       quote:
-        "Free Pupil became my family when I needed one most. They taught me that circumstances don't define destiny.",
+        "Together, we can become the family these children need and show them that circumstances don't define destiny.",
     },
   ],
 };

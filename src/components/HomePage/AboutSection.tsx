@@ -12,15 +12,15 @@ type ImageProps = {
   alt?: string;
 };
 
-type StatProps = {
-  number: string;
-  label: string;
+type VisionProps = {
+  title: string;
+  description: string;
 };
 
 type Props = {
   heading: string;
   description: string;
-  stats: StatProps[];
+  visions: VisionProps[];
   image: ImageProps;
 };
 
@@ -28,7 +28,7 @@ export type AboutSectionProps = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const AboutSection = memo(() => {
-  const { heading, description, stats, image } = {
+  const { heading, description, visions, image } = {
     ...AboutSectionDefaults,
   } as Props;
 
@@ -162,32 +162,32 @@ export const AboutSection = memo(() => {
 
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6"
+              className="grid grid-cols-1 gap-4 md:gap-6"
             >
-              {stats.map((stat, index) => (
+              {visions.map((vision, index) => (
                 <motion.div
                   key={index}
-                  className={`text-center ${
+                  className={`${
                     isMobile ? "bg-white/10" : "bg-white/5 backdrop-blur-sm"
-                  } rounded-2xl p-2 sm:p-4 border border-white/10`}
-                  whileHover={isMobile ? {} : { scale: 1.1 }}
+                  } rounded-2xl p-4 sm:p-6 border border-white/10`}
+                  whileHover={isMobile ? {} : { scale: 1.02 }}
                   transition={
                     isMobile ? {} : { type: "spring", stiffness: 400 }
                   }
                 >
                   <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="text-xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
                   >
-                    <CountUp end={parseInt(stat.number)} duration={2} />
-                    {stat.number.includes("+") && "+"}
+                    <div className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                      {vision.title}
+                    </div>
+                    <p className="text-sm sm:text-base text-white/70">
+                      {vision.description}
+                    </p>
                   </motion.div>
-                  <div className="text-xs sm:text-sm text-white/70 mt-1 sm:mt-2">
-                    {stat.label}
-                  </div>
                 </motion.div>
               ))}
             </motion.div>
@@ -224,10 +224,10 @@ export const AboutSection = memo(() => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <div className="text-xl sm:text-2xl font-bold text-white mb-1">
-                97%
+                Our Mission
               </div>
               <div className="text-xs sm:text-sm text-white/70">
-                Success Rate
+                Breaking cycles, building futures
               </div>
             </motion.div>
           </motion.div>
@@ -239,60 +239,24 @@ export const AboutSection = memo(() => {
 
 AboutSection.displayName = "AboutSection";
 
-// CountUp Component
-const CountUp = memo(({ end, duration }: { end: number; duration: number }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    let startTime: number;
-    let animationFrameId: number;
-
-    const updateCount = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-
-      setCount(Math.floor(progress * end));
-
-      if (progress < 1) {
-        animationFrameId = requestAnimationFrame(updateCount);
-      }
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          animationFrameId = requestAnimationFrame(updateCount);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-      observer.disconnect();
-    };
-  }, [end, duration]);
-
-  return <span ref={ref}>{count}</span>;
-});
-
-CountUp.displayName = "CountUp";
 
 export const AboutSectionDefaults: AboutSectionProps = {
   heading: "Every Child Deserves a Chance to Shine",
   description:
-    "For over two decades, Free Pupil has been a beacon of hope for underprivileged youth. We believe that every child, regardless of their circumstances, deserves access to quality education and the opportunity to reach their full potential.",
-  stats: [
-    { number: "5000+", label: "Lives Changed" },
-    { number: "95+", label: "Graduation Rate" },
-    { number: "20+", label: "Years of Impact" },
+    "Free Pupil stands as a beacon of hope for underprivileged youth. We believe that every child, regardless of their circumstances, deserves access to quality education and the opportunity to reach their full potential.",
+  visions: [
+    { 
+      title: "Our Vision", 
+      description: "A world where every child has equal access to quality education, regardless of their economic background or circumstances." 
+    },
+    { 
+      title: "Our Mission", 
+      description: "To break the cycle of poverty through comprehensive educational support, mentorship, and community engagement programs." 
+    },
+    { 
+      title: "Our Promise", 
+      description: "Every donation and volunteer hour directly impacts a child's future, creating lasting change in communities that need it most." 
+    },
   ],
   image: {
     src: HomePageLayout6Image.src,

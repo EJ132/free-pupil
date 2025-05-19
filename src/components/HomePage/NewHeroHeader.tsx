@@ -206,29 +206,34 @@ export const NewHeroHeader = memo(() => {
             </Button>
           </motion.div>
 
-          {/* Stats Row */}
+          {/* Mission Points */}
           <motion.div
-            className="grid grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-16 max-w-2xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-16 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
           >
             {[
-              { number: "20+", label: "Years of Impact" },
-              { number: "5000+", label: "Lives Changed" },
-              { number: "95%", label: "Success Rate" },
-            ].map((stat, index) => (
+              { icon: "📚", label: "Quality Education", description: "For every child" },
+              { icon: "💖", label: "Community Support", description: "Building together" },
+              { icon: "🌟", label: "Bright Futures", description: "Creating opportunities" },
+            ].map((point, index) => (
               <motion.div
                 key={index}
-                className="text-center"
-                whileHover={{ scale: 1.1 }}
+                className={`text-center p-4 ${
+                  isMobile ? "bg-white/10" : "bg-white/5 backdrop-blur-md"
+                } rounded-2xl border border-white/20`}
+                whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <div className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1">
-                  {stat.number}
+                <div className="text-3xl sm:text-4xl mb-2">
+                  {point.icon}
                 </div>
-                <div className="text-xs sm:text-sm text-white/90 font-medium">
-                  {stat.label}
+                <div className="text-sm sm:text-base font-bold text-white mb-1">
+                  {point.label}
+                </div>
+                <div className="text-xs sm:text-sm text-white/80">
+                  {point.description}
                 </div>
               </motion.div>
             ))}

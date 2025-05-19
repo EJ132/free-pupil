@@ -156,30 +156,30 @@ export const FinalCTA = memo(() => {
               {description}
             </motion.p>
 
-            {/* Stats */}
+            {/* Support Options */}
             <motion.div
-              className="grid grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12 max-w-3xl mx-auto"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               {[
-                { number: "$50", label: "Provides school supplies" },
-                { number: "$100", label: "Funds tutoring sessions" },
-                { number: "$500", label: "Sponsors a child's education" },
-              ].map((stat, index) => (
+                { action: "Donate", label: "Support education initiatives" },
+                { action: "Volunteer", label: "Mentor and tutor students" },
+                { action: "Advocate", label: "Spread the word about our mission" },
+              ].map((option, index) => (
                 <motion.div
                   key={index}
                   className="text-center"
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    {stat.number}
+                    {option.action}
                   </div>
                   <div className="text-xs sm:text-sm text-white/70 mt-1 sm:mt-2">
-                    {stat.label}
+                    {option.label}
                   </div>
                 </motion.div>
               ))}
@@ -241,9 +241,9 @@ export const FinalCTA = memo(() => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <p className="text-base sm:text-lg text-white/90 italic mb-3 sm:mb-4">
-              &ldquo;Every dollar donated to Free Pupil goes directly toward
-              changing a child&apos;s life. We maintain a 95% program expense
-              ratio, ensuring your generosity creates maximum impact.&rdquo;
+              &ldquo;Every contribution to Free Pupil, whether through donations, volunteering, or advocacy, 
+              directly impacts a child&apos;s journey toward a brighter future. Together, we can create 
+              lasting change in our communities.&rdquo;
             </p>
             <p className="text-white/70">- Gabriel Gonzalez, Founder</p>
           </motion.div>

@@ -20,8 +20,8 @@ type CardProps = {
   icon: ImageProps;
   heading: string;
   description: string;
-  stat: string;
-  statLabel: string;
+  vision: string;
+  howToHelp: string;
 };
 
 type Props = {
@@ -183,23 +183,23 @@ export const ImpactSection = memo(() => {
                     </div>
                   </motion.div>
 
-                  {/* Stat Display */}
+                  {/* Vision Display */}
                   <motion.div
                     className="mb-6"
-                    initial={{ scale: 0 }}
+                    initial={{ scale: 0.95 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{
                       type: "spring",
                       stiffness: 400,
-                      delay: index * 0.1 + 0.5,
+                      delay: index * 0.1 + 0.3,
                     }}
                   >
-                    <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                      {card.stat}
+                    <div className="text-sm uppercase tracking-wider text-blue-400 mb-2">
+                      Our Vision
                     </div>
-                    <div className="text-sm text-white/60 mt-1">
-                      {card.statLabel}
+                    <div className="text-lg text-white/90 font-semibold leading-relaxed">
+                      {card.vision}
                     </div>
                   </motion.div>
 
@@ -207,9 +207,19 @@ export const ImpactSection = memo(() => {
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
                     {card.heading}
                   </h3>
-                  <p className="text-white/70 text-sm leading-relaxed mb-6">
+                  <p className="text-white/70 text-sm leading-relaxed mb-4">
                     {card.description}
                   </p>
+
+                  {/* How to Help */}
+                  <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl p-4 border border-white/10 mb-6">
+                    <p className="text-sm uppercase tracking-wider text-purple-400 mb-2">
+                      How You Can Help
+                    </p>
+                    <p className="text-white text-sm leading-relaxed">
+                      {card.howToHelp}
+                    </p>
+                  </div>
 
                   {/* CTA Link */}
                   <Button
@@ -220,7 +230,7 @@ export const ImpactSection = memo(() => {
                       (window.location.href = "#give-lively-widget-section")
                     }
                   >
-                    Learn More
+                    Get Involved
                     <RxChevronRight className="ml-1 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </div>
@@ -257,7 +267,7 @@ ImpactSection.displayName = "ImpactSection";
 export const ImpactSectionDefaults: ImpactSectionProps = {
   heading: "Creating Lasting Impact",
   subheading:
-    "Through comprehensive programs and dedicated support, we're changing lives and building futures.",
+    "Our vision is to break the cycle of poverty through education and opportunity. Join us in transforming lives and building brighter futures.",
   cards: [
     {
       icon: {
@@ -266,9 +276,9 @@ export const ImpactSectionDefaults: ImpactSectionProps = {
       },
       heading: "Quality Education",
       description:
-        "Providing access to excellent educational resources, experienced teachers, and modern learning facilities to ensure every child gets the foundation they deserve.",
-      stat: "98%",
-      statLabel: "Academic Success Rate",
+        "We envision a world where every child, regardless of their background, has access to excellent educational resources and opportunities to learn and grow.",
+      vision: "Every child deserves access to quality education that unlocks their full potential and opens doors to boundless opportunities.",
+      howToHelp: "Sponsor a child's education, donate school supplies, or volunteer as a tutor to directly impact a student's learning journey.",
     },
     {
       icon: {
@@ -277,9 +287,9 @@ export const ImpactSectionDefaults: ImpactSectionProps = {
       },
       heading: "Personal Growth",
       description:
-        "Nurturing individual talents through mentorship programs, life skills training, and character development initiatives that prepare youth for success.",
-      stat: "2,500+",
-      statLabel: "Active Mentorships",
+        "We believe in nurturing the whole child - developing not just academic skills but also character, confidence, and life skills that lead to lasting success.",
+      vision: "Children flourishing with strong values, self-confidence, and the skills they need to become tomorrow's leaders and changemakers.",
+      howToHelp: "Become a mentor, support our life skills programs, or contribute to leadership development initiatives that shape future leaders.",
     },
     {
       icon: {
@@ -288,9 +298,9 @@ export const ImpactSectionDefaults: ImpactSectionProps = {
       },
       heading: "Community Support",
       description:
-        "Building strong support networks that provide health services, nutritional programs, and family engagement to ensure holistic development.",
-      stat: "15,000+",
-      statLabel: "Families Supported",
+        "We're building a network of support that extends beyond the classroom, creating communities where families thrive and children can dream big.",
+      vision: "Strong, supportive communities where every family has the resources they need to help their children succeed and reach their dreams.",
+      howToHelp: "Join community outreach programs, donate to family support services, or help us expand our network of care to reach more families.",
     },
   ],
 };
