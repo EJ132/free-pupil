@@ -130,7 +130,7 @@ export const NewHeroHeader = memo(() => {
             } rounded-full text-xs sm:text-sm text-white mb-6 sm:mb-8 border border-white/30`}
           >
             <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
-            <span>Making a difference since 2001</span>
+            <span>Making a difference since 2024</span>
           </motion.div>
 
           {/* Main Heading with Split Animation */}

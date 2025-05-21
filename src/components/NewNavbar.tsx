@@ -23,21 +23,24 @@ export const NewNavbar = () => {
   }, []);
 
   return (
-    <nav 
+    <nav
       className={`
         fixed top-0 left-0 right-0 z-[999] 
         transition-all duration-300
-        ${isScrolled 
-          ? `${isMobile ? 'bg-black/95' : 'bg-black/95 backdrop-blur-lg'} border-b border-white/10` 
-          : "bg-transparent border-b border-transparent"
+        ${
+          isScrolled
+            ? `${
+                isMobile ? "bg-black/95" : "bg-black/95 backdrop-blur-lg"
+              } border-b border-white/10`
+            : "bg-transparent border-b border-transparent"
         }
       `}
     >
       <div className="container mx-auto px-[5%]">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <motion.div 
-            className="flex items-center gap-3"
+          <motion.div
+            className="flex items-center gap-2"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -45,38 +48,50 @@ export const NewNavbar = () => {
             <Image
               src={FreePupilLogo.src}
               alt="Free Pupil"
-              className="h-10 w-10 invert"
-              width={40}
-              height={40}
+              className="invert"
+              width={100}
+              height={100}
             />
-            <span className="text-xl font-bold text-white">
+            <span className="text-xl md:text-2xl font-bold text-transparent bg-gradient-to-r text-white bg-clip-text">
               Free Pupil
             </span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <motion.div 
+          <motion.div
             className="hidden lg:flex items-center gap-8"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <a href="#about" className="text-white/80 hover:text-white transition-colors">
+            <a
+              href="#about"
+              className="text-white/80 hover:text-white transition-colors"
+            >
               About
             </a>
-            <a href="#impact" className="text-white/80 hover:text-white transition-colors">
+            <a
+              href="#impact"
+              className="text-white/80 hover:text-white transition-colors"
+            >
               Impact
             </a>
-            <a href="#stories" className="text-white/80 hover:text-white transition-colors">
+            <a
+              href="#stories"
+              className="text-white/80 hover:text-white transition-colors"
+            >
               Stories
             </a>
-            <a href="#contact" className="text-white/80 hover:text-white transition-colors">
+            <a
+              href="#contact"
+              className="text-white/80 hover:text-white transition-colors"
+            >
               Contact
             </a>
           </motion.div>
 
           {/* Desktop CTA */}
-          <motion.div 
+          <motion.div
             className="hidden lg:flex items-center gap-4"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -85,13 +100,17 @@ export const NewNavbar = () => {
             <Button
               variant="secondary-alt"
               className="text-white border-2 border-white/20 hover:border-white/40 hover:bg-white/10 rounded-full px-6 py-2"
-              onClick={() => window.location.href = "#give-lively-widget-section"}
+              onClick={() =>
+                (window.location.href = "#give-lively-widget-section")
+              }
             >
               Get Involved
             </Button>
             <Button
               className="bg-white text-black hover:bg-white/90 border-0 rounded-full px-6 py-2"
-              onClick={() => window.location.href = "#give-lively-widget-section"}
+              onClick={() =>
+                (window.location.href = "#give-lively-widget-section")
+              }
             >
               Donate
             </Button>
@@ -115,33 +134,35 @@ export const NewNavbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`lg:hidden ${isMobile ? 'bg-black/95' : 'bg-black/95 backdrop-blur-lg'} border-t border-white/10`}
+            className={`lg:hidden ${
+              isMobile ? "bg-black/95" : "bg-black/95 backdrop-blur-lg"
+            } border-t border-white/10`}
           >
             <div className="container mx-auto px-[5%] py-6">
               <div className="flex flex-col gap-4">
-                <a 
-                  href="#about" 
+                <a
+                  href="#about"
                   className="text-white/80 hover:text-white transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   About
                 </a>
-                <a 
-                  href="#impact" 
+                <a
+                  href="#impact"
                   className="text-white/80 hover:text-white transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Impact
                 </a>
-                <a 
-                  href="#stories" 
+                <a
+                  href="#stories"
                   className="text-white/80 hover:text-white transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Stories
                 </a>
-                <a 
-                  href="#contact" 
+                <a
+                  href="#contact"
                   className="text-white/80 hover:text-white transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

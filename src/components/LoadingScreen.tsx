@@ -41,12 +41,12 @@ export const LoadingScreen = () => {
             <Image
               src={FreePupilLogo.src}
               alt="Free Pupil"
-              width={128}
-              height={128}
+              width={256}
+              height={256}
               className="relative z-10 invert"
             />
           </motion.div>
-          
+
           <motion.div
             className="absolute bottom-10 text-white text-sm"
             initial={{ opacity: 0 }}
@@ -54,9 +54,18 @@ export const LoadingScreen = () => {
             transition={{ delay: 0.5 }}
           >
             <div className="flex items-center gap-2">
-              <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-              <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-              <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+              <div
+                className="w-1 h-1 bg-white rounded-full animate-bounce"
+                style={{ animationDelay: "0ms" }}
+              />
+              <div
+                className="w-1 h-1 bg-white rounded-full animate-bounce"
+                style={{ animationDelay: "150ms" }}
+              />
+              <div
+                className="w-1 h-1 bg-white rounded-full animate-bounce"
+                style={{ animationDelay: "300ms" }}
+              />
             </div>
           </motion.div>
         </motion.div>

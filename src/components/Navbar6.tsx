@@ -63,15 +63,15 @@ export const Navbar6 = () => {
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
-    <nav className="relative z-[999] flex min-h-16 w-full items-center border-b border-white/10 bg-black/80 backdrop-blur-lg px-[5%] md:min-h-18 fixed top-0 left-0 right-0">
+    <nav className="relative z-[999] flex min-h-20 w-full items-center border-b border-white/10 bg-black/80 backdrop-blur-lg px-[5%] md:min-h-24 fixed top-0 left-0 right-0">
       <div className="mx-auto flex size-full max-w-full items-center justify-between">
         <div className="flex items-center">
           <Image
             src={FreePupilLogo.src}
             alt={FreePupilLogo.alt || ""}
             className="inline-block -ml-6 md:-ml-4 invert opacity-90 hover:opacity-100 transition-opacity"
-            width={80}
-            height={80}
+            width={200}
+            height={200}
           />
           <h1
             className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent hover:cursor-pointer -mt-1 -ml-1 transition-all hover:scale-105"
