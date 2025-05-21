@@ -3,17 +3,17 @@
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { 
-  Mail, 
-  Phone, 
-  Facebook, 
-  Instagram, 
-  Linkedin, 
+import {
+  Mail,
+  Phone,
+  Facebook,
+  Instagram,
+  Linkedin,
   Twitter,
   Heart,
   BookOpen,
   Users,
-  Calendar
+  Calendar,
 } from "lucide-react";
 
 import FreePupilLogoDark from "../../public/svgs/FreePupilLogo.svg";
@@ -62,7 +62,15 @@ export type Footer7Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const Footer7 = () => {
-  const { logo, description, columnLinks, contactInfo, socialLinks, footerText, footerLinks } = {
+  const {
+    logo,
+    description,
+    columnLinks,
+    contactInfo,
+    socialLinks,
+    footerText,
+    footerLinks,
+  } = {
     ...Footer7Defaults,
   } as Props;
 
@@ -208,11 +216,14 @@ export const Footer7 = () => {
                   Make a Difference Today
                 </h3>
                 <p className="text-white/80">
-                  Your support helps us provide education and opportunity to children in need.
+                  Your support helps us provide education and opportunity to
+                  children in need.
                 </p>
               </div>
               <motion.button
-                onClick={() => window.location.href = "#give-lively-widget-section"}
+                onClick={() =>
+                  (window.location.href = "#give-lively-widget-section")
+                }
                 className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -232,9 +243,7 @@ export const Footer7 = () => {
             variants={itemVariants}
             className="flex items-center justify-center text-center"
           >
-            <p className="text-white/60 text-sm">
-              {footerText}
-            </p>
+            <p className="text-white/60 text-sm">{footerText}</p>
           </motion.div>
         </motion.div>
       </div>
@@ -248,7 +257,8 @@ export const Footer7Defaults: Footer7Props = {
     src: FreePupilLogoDark.src,
     alt: "Free Pupil Logo",
   },
-  description: "Transforming lives through education since 2001. Free Pupil provides comprehensive educational support to underprivileged youth, helping them break the cycle of poverty and achieve their dreams.",
+  description:
+    "Transforming lives through education since 2024. Free Pupil provides comprehensive educational support to underprivileged youth, helping them break the cycle of poverty and achieve their dreams.",
   columnLinks: [
     {
       title: "Programs",
