@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Play, Heart } from "lucide-react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
-import HomeImage1 from "../../../public/images/home/HomeImage1.png";
+import FreePupilImage from "../../../public/images/home/freepupil.jpg";
 
 export const NewHeroHeader = memo(() => {
   const ref = useRef(null);
@@ -50,7 +50,7 @@ export const NewHeroHeader = memo(() => {
       {/* Background Video/Image Layer */}
       <motion.div className="absolute inset-0" style={{ y, scale }}>
         <Image
-          src={HomeImage1.src}
+          src={FreePupilImage.src}
           alt="Hero background"
           fill
           className="object-cover"
@@ -214,9 +214,21 @@ export const NewHeroHeader = memo(() => {
             transition={{ duration: 0.8, delay: 1.4 }}
           >
             {[
-              { icon: "📚", label: "Quality Education", description: "For every child" },
-              { icon: "💖", label: "Community Support", description: "Building together" },
-              { icon: "🌟", label: "Bright Futures", description: "Creating opportunities" },
+              {
+                icon: "📚",
+                label: "Quality Education",
+                description: "For every child",
+              },
+              {
+                icon: "💖",
+                label: "Community Support",
+                description: "Building together",
+              },
+              {
+                icon: "🌟",
+                label: "Bright Futures",
+                description: "Creating opportunities",
+              },
             ].map((point, index) => (
               <motion.div
                 key={index}
@@ -226,9 +238,7 @@ export const NewHeroHeader = memo(() => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <div className="text-3xl sm:text-4xl mb-2">
-                  {point.icon}
-                </div>
+                <div className="text-3xl sm:text-4xl mb-2">{point.icon}</div>
                 <div className="text-sm sm:text-base font-bold text-white mb-1">
                   {point.label}
                 </div>
