@@ -281,16 +281,10 @@ export const Footer7Defaults: Footer7Props = {
   ],
   contactInfo: [
     {
-      icon: Phone,
-      label: "Phone",
-      value: "+1 (310) 467-7131",
-      href: "tel:+13104677131",
-    },
-    {
       icon: Mail,
       label: "Email",
-      value: "Gabriel@freepupil.com",
-      href: "mailto:Gabriel@freepupil.com",
+      value: "contact@freepupil.com",
+      href: "mailto:contact@freepupil.com",
     },
   ],
   socialLinks: [
@@ -315,6 +309,6 @@ export const Footer7Defaults: Footer7Props = {
       label: "Twitter",
     },
   ],
-  footerText: " 2024 Free Pupil. All rights reserved.",
+  footerText: "2025 Free Pupil. All rights reserved.",
   footerLinks: [],
 };
